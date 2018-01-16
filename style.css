@@ -1,0 +1,58 @@
+.red{
+	background-color: red;
+}
+.logincard{
+	margin-top: 64.5px;
+}
+
+.loginform{
+	margin-top: 20px;
+}
+
+.fullheight{
+	height: 100% !important;
+}
+.listcontainer{
+	margin-left: 0px;
+}
+.list-title-scholars{
+	margin-left: 50px;
+	padding-top: 20px;
+}
+.companylogo{
+	padding-left: 20px;
+}
+.maincontainer{
+	margin-left: 0px;
+
+}
+.announcement-card{
+	padding: 3%;
+}
+.announcementcontainer{
+	padding-top: 5%;
+}
+.message-custom{
+	margin-top:100px;
+}
+.message-container{
+	padding: 3%;
+}
+.custom-side-nav{
+	margin-top: 64px;
+}
+.main-content{
+	padding-left: 300px;
+}
+.an-message{
+	height: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+      .main-content {
+        padding-left: 0;
+      }
+			.custom-side-nav{
+				margin-top: 0px;
+			}
+    }
