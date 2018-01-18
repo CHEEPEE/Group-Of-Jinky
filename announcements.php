@@ -128,7 +128,7 @@
 
                     if ($row['update_time_stamp']!=null) {
                       # code...
-                      $update = "  <div class='col s4 right blue-text text-lighten-2'>
+                      $update = "  <div class='col s6 right blue-text text-lighten-2'>
                                     Last Update
                                     <div class='chip white-text teal lighten-2'>
                                         ".$row['update_time_stamp']."
@@ -143,25 +143,27 @@
                       echo "
                       <li>
                         <div class='collapsible-header'>
-                          <div class='col s6 blue-text text-lighten-2'> <i class='material-icons blue-text announcement icon'>
-                            </i>".$row['title']."
+                          <div class='col s4 blue-text text-lighten-2'>".$row['title']."
                           </div>
 
-                          <div class='col s1 blue-text text-lighten-2'>  <div class='chip white-text blue lighten-2'>
+                          <div class='col s2 blue-text text-lighten-2'>  <div class='chip white-text blue lighten-2'>
                             ".$row['hour']."
                             </div>
                           </div>
-                          <div class='col s3 blue-text text-lighten-2'> <i class='material-icons blue-text calendar Outline icon'>
+                          <div class='col s4 blue-text text-lighten-2'> <i class='material-icons blue-text calendar Outline icon'>
                             </i>".$row['timestamp']."
                           </div>
-                          <div class='col s2 offset-10 blue-text text-lighten-2'>
+                          <div class='col s1 blue-text text-lighten-2'>
                             <a href = 'edit-announcements.php?q=". $row['id']. "'>
-                              <i class='material-icons large blue-text edit icon'></i>
-                            </a>
-                            <a href = 'delete-announcement.php?q=". $row['id']. "'>
-                              <i class='material-icons large red-text text-lighten-2 delete icon'></i>
+                              <i class='material-icons Medium blue-text edit icon'></i>
                             </a>
                           </div>
+                          <div class='col s1 blue-text text-lighten-2'>
+                            <a href = 'delete-announcement.php?q=". $row['id']. "'>
+                              <i class='material-icons Medium red-text text-lighten-2 delete icon'></i>
+                            </a>
+                          </div>
+
 
                         </div>
                         <div class='collapsible-body'>

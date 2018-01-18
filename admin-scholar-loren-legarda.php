@@ -8,6 +8,22 @@
   include 'styles.php';
   include 'dbconnect.php';
   include 'sessions.php';
+  $_SESSION['provider'] =  "Loren Legarda";
+  $student_number = "";
+  $_SESSION['error'] = "";
+  $search = $_SESSION['search_item'];
+  $array_search = explode(" ",$search);
+  $provider = $_SESSION['provider'];
+    $sql = "SELECT * FROM student_list_scholars WHERE scholar_provider = '$provider'";
+  foreach ($array_search as $value)
+  {
+  $sql =$sql. "AND (student_number LIKE '%$value%' OR year_level = '$value' OR first_name LIKE '%$value%' OR last_name LIKE '%$value%' OR middle_name LIKE '%$value%' OR school LIKE '%$value%' OR course LIKE '%$value%' OR municipality LIKE '%$value%' OR status LIKE '%$value%' OR requirements_status = '$value' )";
+  }
+ $sql = $sql."ORDER BY last_name";
+
+$result = $conn->query($sql);
+$row_cnt = $result->num_rows;
+
 
 
 
@@ -43,10 +59,8 @@
         <div class="card listcontainer">
 
               <div class="red-text"><?php  echo $_SESSION['error'];
-                  $_SESSION['provider'] =  "Loren Legarda";
-              $student_number = "";
-              $_SESSION['error'] = "";
-                ;?></div>
+
+                ?></div>
               <h5 class="list-title-scholars">List of Scholars</h5>
           <div class="card-action">
               <div class="row">
@@ -60,7 +74,7 @@
                         <label for="search">Search</label>
                         <input id="search" type="text" name="search" class="validate">
                       </div>
-                      <div class="col s4 right">
+                      <div class="col s4">
                         <input type="submit" class="btn blue lighten-2 white-text" value="Search">
                       </div>
                     </div>
@@ -127,93 +141,118 @@
         <!--    END OF MODAL STRACTURE -->
 
         <!-- Data list -->
+
         <div class="row">
+
           <div class="col s12">
+            <div class='chip teal white-text teal lighten-2'>
+                Result :
+                <?php   echo "$row_cnt";?>
+            </div>
+
 
           <ul class="collapsible">
+            <li>
+              <div class='collapsible-header'>
+                <div class='col s4 blue-text text-lighten-2  '>Student Name</h6>
+                </div>
+                <div class='col s3 teal-text'>
+                  Student Number
+                </div>
+
+                <div class='col s2 teal-text'>
+
+                    Scholarship Status
+
+
+                </div>
+                <div class='col s3 teal-text'>
+
+                  Requirements Status
+
+
+                </div>
+                <div class='col s3'>
+
+                </div>
+
+              </div>
+              <div class='collapsible-body'>
+              </div>
+            </li>
 
                   <?php
-                  $search = $_SESSION['search_item'];
-                  $array_search = explode(" ",$search);
-                  $provider = $_SESSION['provider'];
-                    $sql = "SELECT * FROM student_list_scholars WHERE scholar_provider = '$provider'";
-                  foreach ($array_search as $value)
-                  {
-                  $sql =$sql. "AND (student_number LIKE '%$value%' OR year_level = '$value' OR first_name LIKE '%$value%' OR last_name LIKE '%$value%' OR middle_name LIKE '%$value%' OR school LIKE '%$value%' OR course LIKE '%$value%' OR municipality LIKE '%$value%' OR status LIKE '%$value%' OR requirements_status = '$value' )";
-                  }
-                 $sql = $sql."ORDER BY last_name";
 
-              $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
                   // output data of each row
+
                   while($row = $result->fetch_assoc()) {
 
 
-                      echo "
-                      <li>
-                        <div class='collapsible-header'>
-                          <div class='col s4 blue-text text-lighten-2'> <i class='material-icons blue-text user icon'>
-                            </i>".$row['last_name']." ".$row['first_name']. ", ".$row['middle_name']. "
-                          </div>
-                          <div class='col s3'>
-                            <div class='chip'>
-                             Student Number
-                            </div>
-                           ".$row['student_number']."
-                          </div>
 
-                          <div class='col s2'>
-                            <div class='chip'>
-                              Status
-                            </div>
-                              ".$row['status']. "
-                          </div>
-                          <div class='col s3'>
-                            <div class='chip'>
-                             Requirements Status
-                            </div>
-                            ".$row['requirements_status']."
-                          </div>
-                           <div class='col s3'>
+                    echo "
+                    <li>
+                      <div class='collapsible-header'>
+                        <div class='col s4 blue-text text-lighten-2  '>".$row['last_name']." ".$row['first_name']. ", ".$row['middle_name']. "</h6>
+                        </div>
+                        <div class='col s3'>
+                        <div class='chip teal white-text teal lighten-2'>
+                           ".$row['student_number']."
+                        </div>
+
+                        </div>
+
+                        <div class='col s2'>
+                        <div class='chip teal white-text teal lighten-2'>
+                           ".$row['status']."
+                        </div>
+
+                        </div>
+                        <div class='col s3'>
+                        <div class='chip teal white-text teal lighten-2'>
+                           ".$row['requirements_status']."
+                        </div>
+
+                        </div>
+                        <div class='col s1'>
                           <a href = 'admin-edit-scholar.php?q=". $row['student_number']. "'>
-                            <i class='material-icons large blue-text edit icon'></i>
+                            <i class='material-icons small blue-text'>edit</i>
                           </a>
+                        </div>
+                        <div class='col s1'>
                           <a href = 'scholar_delete.php?q=". $row['student_number']. "'>
-                            <i class='material-icons large red-text text-lighten-2 delete icon'></i>
+                            <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
                           </a>
-                          <i class='material-icons large blue-text comments outline icon'></i>
-                          </div>
                         </div>
-                        <div class='collapsible-body'>
-                         <div class ='row'>
-                         <div class='col s3'>
-                            <div class='chip'>
-                             Municipality
-                            </div>
-                           ".$row['municipality']."
-                         </div>
-                         <div class='col s3'>
-                            <div class='chip'>
-                             School
-                            </div>
-                           ".$row['school']."
-                         </div>
-                         <div class='col s3'>
-                            <div class='chip'>
-                             Course
-                            </div>
-                           ".$row['course']."
-                         </div>
-                         <div class='col s3'>
-                            <div class='chip'>
-                             Year Level
-                            </div>
-                           ".$row['year_level']."
-                         </div>
-                         </div>
+                        <div class='col s1'>
+                          <i class='material-icons small blue-text comments outline'>chat</i>
                         </div>
-                      </li>";
+                      </div>
+                      <div class='collapsible-body'>
+                       <div class ='row'>
+                       <table class ='striped'>
+                        <thead>
+                          <tr>
+                              <th class='teal-text text-lighten-2'>Municipality</th>
+                              <th class='teal-text text-lighten-2'>School</th>
+                              <th class='teal-text text-lighten-2'>Course</th>
+                              <th class='teal-text text-lighten-2'>Year Level</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td>".$row['municipality']."</td>
+                            <td>".$row['school']."</td>
+                            <td>".$row['course']."</td>
+                            <td>".$row['year_level']."</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                       </div>
+                      </div>
+                    </li>";
 
 
                   }
