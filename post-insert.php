@@ -55,9 +55,9 @@ function getMonth($diget_month)
   # code...
 }
 
-$announcement_title= $_POST['announcement_title'];
-$announcement_subject = $_POST['announcement_subject'];
-$announcement_body = $_POST['announcement_body'];
+$announcement_title= htmlspecialchars($_POST['announcement_title'], ENT_QUOTES);
+$announcement_subject = htmlspecialchars($_POST['announcement_subject'], ENT_QUOTES);
+$announcement_body = htmlspecialchars($_POST['announcement_body'], ENT_QUOTES);
 $date = date("l"). ", " .getMonth(date("m"))." ".date("d").", ".date("Y");
 $hour = date("h:i:a");
 echo $hour;

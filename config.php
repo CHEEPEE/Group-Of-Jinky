@@ -2,6 +2,6 @@
    define('DB_SERVER', 'localhost');
    define('DB_USERNAME', 'root');
    define('DB_PASSWORD', '');
-   define('DB_DATABASE', 'sac_epunch');
+   define('DB_DATABASE', 'jinky');
    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 ?>

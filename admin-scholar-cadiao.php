@@ -9,7 +9,7 @@
   include 'sessions.php';
   $_SESSION['provider'] = "Rhodora Cadiao";
   $student_number = "";
-  $_SESSION['error'] = "";
+
   $search = $_SESSION['search_item'];
   $array_search = explode(" ",$search);
   $provider = $_SESSION['provider'];
@@ -55,11 +55,25 @@ $row_cnt = $result->num_rows;
       </div>
 
         <div class="card listcontainer">
+            <div class="row list-title-scholars">
+              <div class="col s1 red-text lighten-2 center ">
+                
+                     <?php  echo $_SESSION['error'];?>
+               
+                   <?php $_SESSION['error'] ='';?>
 
-              <div class="red-text"><?php  echo $_SESSION['error'];
+              </div>
+              <div class="col s4 ">
+                 <h5 class=" blue-text lighten-2">List of Scholars</h5>
+              </div>
+              <div class="col s1 right">
+                   <div class='chip teal white-text teal lighten-2'>
+                         Print
+                    </div>
+              </div>
 
-                ?></div>
-              <h5 class="list-title-scholars">List of Scholars</h5>
+            </div>
+             
           <div class="card-action">
               <div class="row">
                 <div class="input-field col s3">
