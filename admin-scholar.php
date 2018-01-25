@@ -8,20 +8,51 @@
   include 'styles.php';
   include 'dbconnect.php';
   include 'sessions.php';
-  $_SESSION['provider'] =  "Loren Legarda";
+  $_SESSION['provider'] =  $_REQUEST["q"];
   $student_number = "";
   $search = $_SESSION['search_item'];
   $array_search = explode(" ",$search);
-  $provider = $_SESSION['provider'];
-    $sql = "SELECT * FROM student_list_scholars WHERE scholar_provider = '$provider'";
-  foreach ($array_search as $value)
-  {
-  $sql =$sql. "AND (student_number LIKE '%$value%' OR year_level = '$value' OR first_name LIKE '%$value%' OR last_name LIKE '%$value%' OR middle_name LIKE '%$value%' OR school LIKE '%$value%' OR course LIKE '%$value%' OR municipality LIKE '%$value%' OR status LIKE '%$value%' OR requirements_status = '$value' )";
+  $provider = $_REQUEST["q"];
+
+  if ($provider == null) {
+    # code...
+    $firtsProvider = "SELECT * FROM scholar_provider";
+
+    $firstProviderResult = $conn->query($firtsProvider);
+    if ($firstProviderResult->num_rows>0) {
+      # code...
+      while ($row = $firstProviderResult->fetch_assoc()) {
+        # code...
+        $provider = $row['provider_id'];
+      }
+    }
   }
- $sql = $sql."ORDER BY last_name";
+
+    # code...
+    $sql = "SELECT * FROM student_list_scholars WHERE scholar_provider = '$provider'";
+    foreach ($array_search as $value)
+    {
+    $sql =$sql. "AND (student_number LIKE '%$value%' OR year_level = '$value' OR first_name LIKE '%$value%' OR last_name LIKE '%$value%' OR middle_name LIKE '%$value%' OR school LIKE '%$value%' OR course LIKE '%$value%' OR municipality LIKE '%$value%' OR status LIKE '%$value%' OR requirements_status = '$value' )";
+    }
+   $sql = $sql."ORDER BY last_name";
+
+
 
 $result = $conn->query($sql);
 $row_cnt = $result->num_rows;
+
+$sqlProvider_name = "SELECT * FROM scholar_provider WHERE provider_id = '$provider'";
+$provider_name_result = $conn->query($sqlProvider_name);
+$provider_name;
+
+if ($provider_name_result->num_rows>0) {
+  # code...
+  while ($row = $provider_name_result->fetch_assoc()) {
+    # code...
+    $provider_name = $row['provider_name'];
+  }
+}
+
 
 
 
@@ -49,14 +80,13 @@ $row_cnt = $result->num_rows;
             <div class="col s12">
               <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
               <a href="#!" class="breadcrumb">Scholars</a>
-              <a href="#!" class="breadcrumb">Loren Legarda</a>
+              <a href="#!" class="breadcrumb"><?php echo $provider_name;?></a>
             </div>
           </div>
         </nav>
       </div>
 
         <div class="card listcontainer">
-
              <div class="row list-title-scholars">
               <div class="col s1 red-text lighten-2 center ">
 
@@ -81,7 +111,7 @@ $row_cnt = $result->num_rows;
                    <a class="waves-effect waves-light btn modal-trigger blue" href="#modal1">Add Scholar</a>
                 </div>
                 <div class="input-field col s3 offset-s5">
-                  <form method="post" action="searchthis-loren.php">
+                  <form method="post" action="searchthis.php">
                     <div class="$row">
                       <div class="col s12">
                         <label for="search">Search</label>
@@ -200,8 +230,6 @@ $row_cnt = $result->num_rows;
                   // output data of each row
 
                   while($row = $result->fetch_assoc()) {
-
-
 
                     echo "
                     <li>

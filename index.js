@@ -25,3 +25,10 @@
  $(document).ready(function(){
     $('select').select();
   });
+
+function editProviderid(id){
+  var listelem = document.getElementById('edit'+id);
+  var inputTextelem = document.getElementById('edit-provider-name');
+  inputTextelem.value = listelem.innerHTML;
+
+}

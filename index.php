@@ -27,7 +27,7 @@
             if ($adminrole=="superadmin"){
                  $_SESSION['login_user'] = $myusername;
                  $_SESSION['search_item']=null;
-                header("location: admin.php");
+                header("location: admin-scholar.php?q= ");
             }else{
                  $_SESSION['login_user'] = $myusername;
                 header("location: adminpanel_account_setting.php");

@@ -45,7 +45,7 @@
 				 $req_stat = $row['requirements_status'];
 	    }
 	}
-	$school =htmlspecialchars($schoolraw, ENT_QUOTES);;
+	$school =htmlspecialchars($schoolraw, ENT_QUOTES);
 
  ?>
 	<title></title>
@@ -127,12 +127,29 @@
 						        </div>
 						         <div class="input-field col s2">
 						           <select name="provider">
-								      <option id="defaultprovider" value="<?php
-								     echo $_SESSION['provider'];
-								      ?>" selected><?php
-								     echo $_SESSION['provider'];
-								      ?></option>
-								     	<option id="optionprovider" value="1"></option>
+												 <?php
+												 $sqlgetProvider = "SELECT * FROM scholar_provider;";
+												 $provider_result = $conn->query($sqlgetProvider);
+													 if ($provider_result->num_rows>0) {
+														 # code...
+														 while ($row = $provider_result->fetch_assoc()) {
+															 # code...
+															if ($row['provider_name'] == $_SESSION['provider']) {
+																# code...
+																$value = $row['provider_name'];
+																$id_value = $row['provider_id'];
+
+
+																echo "<option id='defaultprovider' value='$id_value'selected>$value</option>";
+															}else {
+																# code...
+																$value = $row['provider_name'];
+																echo "<option id='defaultprovider' value='$id_value'>$value</option>";
+															}
+														 }
+													 }
+												 ?>
+
 
 								    </select>
 								    <label>Scholarship Provider</label>
@@ -196,7 +213,7 @@
 					document.getElementById("optionprovider1").value = "Complete";
 				}
 			}
-			selectOptions();
+
 
      </script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

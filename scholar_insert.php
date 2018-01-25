@@ -79,12 +79,9 @@ if ($result->num_rows== 1) {
 
 	if ($conn->query($sql) === TRUE) {
 	     $_SESSION['error'] = '';
-     		if ($provider == "Loren Legarda") {
-      			# code...
-      			header("location:admin-scholar-loren-legarda.php");
-      		}else{
-      			header("location:admin-scholar-cadiao.php");
-      		}
+       $provider = $_SESSION['provider'];
+     		$location = 'location:admin-scholar.php?q='.$provider;
+        header($location);
 	} else {
 	     $_SESSION['error'] = "Error: " . $sql . "<br>" . $conn->error;;
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'sessions.php';
 
 $student_number = $_REQUEST["q"];
@@ -9,12 +9,9 @@ $sql = "DELETE FROM student_list_scholars WHERE student_number = '$student_numbe
 
 if ($conn->query($sql) === TRUE) {
 	$_SESSION['error'] = "Deleted Succesfully";
-   if ($provider == "Loren Legarda") {		
-   	
-		header("location:admin-scholar-loren-legarda.php");
-	}else{
-		header("location:admin-scholar-cadiao.php");
-	}
+	$provider = $_SESSION['provider'];
+	 $location = 'location:admin-scholar.php?q='.$provider;
+	 header($location);
 } else {
     echo "Error deleting record: " . $conn->error;
 }
