@@ -47,9 +47,25 @@
 .an-message{
 	height: 300px;
 }
-.sections{
+.sections-custom{
 	height: 700px;
 }
+.newsfeedcard{
+	margin-top: 10px;
+	margin-left: 5%;
+
+	padding: 20px;
+}
+.fix-custom{
+	position: fixed;
+}
+.scrollers{
+	padding: 20px;
+}
+.body-custom::-webkit-scrollbar {
+    display: none;
+}
+.body-custom::-webkit-scrollbar { width: 0 !important }
 
 @media only screen and (max-width : 992px)
 {

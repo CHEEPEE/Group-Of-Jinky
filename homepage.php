@@ -17,7 +17,7 @@
 
   		      <ul class="right hide-on-med-and-down blue lighten-1">
               <li><a href="#introduction">Home</a></li>
-              <li><a href="#structure">Anouncements</a></li>
+              <li><a href="announcements-page.php">Anouncements</a></li>
               <li><a href="#structure">About</a></li>
               <li><a href="#initialization">Grant</a></li>
               <li><a href="#initialization">Sign In</a></li>
