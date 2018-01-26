@@ -20,7 +20,6 @@ $provider_result = $conn->query($sql);
                   }
                 }
               ?>
-
             </ul>
           </div>
         </li>

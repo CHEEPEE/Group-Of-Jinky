@@ -13,6 +13,7 @@
 	  $(".dropdown-trigger").dropdown().open();
     $('.tooltipped').tooltip();
 
+
   });
 
 
@@ -25,6 +26,11 @@
  $(document).ready(function(){
     $('select').select();
   });
+
+   $(document).ready(function(){
+      $('.scrollspy').scrollSpy();
+    });
+
 
 function editProviderid(id){
   var listelem = document.getElementById('edit'+id);

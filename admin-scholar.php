@@ -16,7 +16,7 @@
 
   if ($provider == null) {
     # code...
-    $firtsProvider = "SELECT * FROM scholar_provider";
+    $firtsProvider = "SELECT * FROM scholar_provider LIMIT 1";
 
     $firstProviderResult = $conn->query($firtsProvider);
     if ($firstProviderResult->num_rows>0) {
@@ -35,6 +35,7 @@
     $sql =$sql. "AND (student_number LIKE '%$value%' OR year_level = '$value' OR first_name LIKE '%$value%' OR last_name LIKE '%$value%' OR middle_name LIKE '%$value%' OR school LIKE '%$value%' OR course LIKE '%$value%' OR municipality LIKE '%$value%' OR status LIKE '%$value%' OR requirements_status = '$value' )";
     }
    $sql = $sql."ORDER BY last_name";
+   
 
 
 
