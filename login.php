@@ -1,45 +1,3 @@
-   <?php
-   include 'dbconnect.php';
-   include("config.php");
-   session_start();
-   $_SESSION['error']="";
-   $error = "";
-
-
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form
-
-      $myusername = mysqli_real_escape_string($conn,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
-
-      $sql = "SELECT id,role FROM admins WHERE username = '$myusername' and password = '$mypassword'";
-
-      $queryrole = mysqli_query($db,"SELECT role FROM admins WHERE username = '$myusername' and password = '$mypassword'");
-
-    $row = mysqli_fetch_array($queryrole,MYSQLI_ASSOC);
-     $adminrole = $row["role"];
-       echo $adminrole;
-      $result = $conn->query($sql);
-
-        if ($result->num_rows == 1) {
-            // output data of each row
-            //session_register($username);
-            if ($adminrole=="superadmin"){
-                 $_SESSION['login_user'] = $myusername;
-                 $_SESSION['search_item']=null;
-                header("location: admin-scholar.php?q= ");
-            }else{
-                 $_SESSION['login_user'] = $myusername;
-                header("location: adminpanel_account_setting.php");
-            }
-
-        } else {
-            $error = "Your Login Name or Password is invalid";
-
-        }
-
-}
-?>
 <!DOCTYPE>
 <html>
 
@@ -68,11 +26,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     </head>
-    <body class="container center grey lighten-4">
+    <body class="container center">
 
      <div class="row logincard">
         <div class="col l3 m2"></div>
-         <div class="col s12 l6 m8">
+         <div class="col s12 l5 m8">
         <div class="card center">
              <div class="container">
                <div class="row center">
@@ -96,16 +54,11 @@
 
                         </div>
                         <BUTTON class="waves-effect waves-light btn blue lighten-2" type="submit" name="Login"><input type="submit" name="login" value="Log In"></BUTTON>
-                        <div class="row signuplabel red-text text-lighten-2">
-                            <?php echo $error;?>
-                        </div>
-
                         <div class="row signuplabel">
                           <div class="col s12">
-                            <div class="grey-text">
-                                Doesn't have account Yet?  <a href="scholar-sign-up.php">  <div class='chip white-text blue lighten-2'> Sign Up </div></a>
-                            </div>
+                            Dont have account Yet?  <a href="#">  <div class='chip white-text blue lighten-2'> Sign Up </div></a>
                           </div>
+
                         </div>
                       </form>
                   </div>

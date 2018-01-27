@@ -115,7 +115,7 @@
                   $search = $_SESSION['search_item'];
                   $array_search = explode(" ",$search);
                   $provider = $_SESSION['provider'];
-                  $sql = "SELECT * FROM announcements";
+                  $sql = "SELECT * FROM announcements ";
 
 
               $update = "";
