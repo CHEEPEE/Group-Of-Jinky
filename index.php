@@ -1,6 +1,6 @@
    <?php
-   include 'dbconnect.php';
-   include("config.php");
+
+   // include("config.php");
    session_start();
    $_SESSION['error']="";
    $error = "";
@@ -9,40 +9,70 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form
 
-      $myusername = mysqli_real_escape_string($conn,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
+    //   $myusername = mysqli_real_escape_string($conn,$_POST['username']);
+    //   $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
+    //
+    //   $sql = "SELECT id,role FROM admins WHERE username = '$myusername' and password = '$mypassword'";
+    //
+    // $queryrole = mysqli_query($db,"SELECT role FROM admins WHERE username = '$myusername' and password = '$mypassword'");
+    // $row = mysqli_fetch_array($queryrole,MYSQLI_ASSOC);
+    //  $adminrole = $row["role"];
+    //    echo $adminrole;
+    //   $result = $conn->query($sql);
+    //     if ($result->num_rows == 1) {
+    //         // output data of each row
+    //         //session_register($username);
+    //         if ($adminrole=="superadmin"){
+    //              $_SESSION['login_user'] = $myusername;
+    //              $_SESSION['search_item']=null;
+    //             header("location: admin-scholar.php?q= ");
+    //         }else{
+    //              $_SESSION['login_user'] = $myusername;
+    //             header("location: adminpanel_account_setting.php");
+    //         }
+    //
+    //     } else {
+    //         $error = "Your Login Name or Password is invalid";
+    //
+    //     }
 
-      $sql = "SELECT id,role FROM admins WHERE username = '$myusername' and password = '$mypassword'";
+    include 'dbconnect.php';
+    $myusername = mysqli_real_escape_string($conn,$_POST['username']);
+    $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
+    $hashedPassword = md5($mypassword);
+    $sql = "SELECT * FROM users WHERE username = '$myusername' AND password = '$hashedPassword'";
+    $result  = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            if ($row['role']=='student') {
+              # code...
+              header("location:student.php");
 
-      $queryrole = mysqli_query($db,"SELECT role FROM admins WHERE username = '$myusername' and password = '$mypassword'");
-
-    $row = mysqli_fetch_array($queryrole,MYSQLI_ASSOC);
-     $adminrole = $row["role"];
-       echo $adminrole;
-      $result = $conn->query($sql);
-
-        if ($result->num_rows == 1) {
-            // output data of each row
-            //session_register($username);
-            if ($adminrole=="superadmin"){
-                 $_SESSION['login_user'] = $myusername;
-                 $_SESSION['search_item']=null;
-                header("location: admin-scholar.php?q= ");
-            }else{
-                 $_SESSION['login_user'] = $myusername;
-                header("location: adminpanel_account_setting.php");
             }
-
-        } else {
-            $error = "Your Login Name or Password is invalid";
-
+            if ($row['role']=='admin') {
+              $_SESSION['login_user'] = $myusername;
+              $_SESSION['user_id'] = $row['id'];
+              $_SESSION['search_item']=null;
+                header("location:admin-scholar.php?q=");
+              # code...
+            }if ($row['role']=='subadmin') {
+                header("location:subadmin.php");
+              # code...
+            }
         }
+
+
+      # code...
+    }else {
+      # code...
+      echo "login Failed";
+    }
+
 
 }
 ?>
 <!DOCTYPE>
 <html>
-
     <head>
            <!--Import Google Icon Font-->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
@@ -103,7 +133,7 @@
                         <div class="row signuplabel">
                           <div class="col s12">
                             <div class="grey-text">
-                                Doesn't have account Yet?  <a href="scholar-sign-up.php">  <div class='chip white-text blue lighten-2'> Sign Up </div></a>
+                                Doesn't have account Yet?  <a href="#modal1" class="modal-trigger">  <div class='chip white-text  blue lighten-2'> Sign Up </div></a>
                             </div>
                           </div>
                         </div>
@@ -113,6 +143,38 @@
           </div>
         </div>
         <div class="col l3 m2"></div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal col s4 offset-s2">
+
+          <div class="modal-content">
+            <h6 class="grey-text">Enter Student Number</h6>
+            <div class="card-action">
+              <div class="row">
+                <div class="col s4">
+
+                </div>
+                 <form class="col s12" method="post" action="scholar-new-or-old.php">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="student-number" name="student-number" type="text" class="validate">
+                    <label for="student-number">Student Number</label>
+                  </div>
+                 <div class="modal-content">
+                  <BUTTON class="waves-effect waves-light btn blue lighten-2" type="submit" name="save"><input type="submit" name="save" value="Proceed"></BUTTON>
+                 </div>
+                </div>
+
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      <!--    END OF MODAL STRACTURE -->
+      <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+     <script type="text/javascript" src="index.js"></script>
+
      </div>
    </body>
 </html>

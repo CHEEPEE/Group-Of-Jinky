@@ -35,6 +35,27 @@
 function editProviderid(id){
   var listelem = document.getElementById('edit'+id);
   var inputTextelem = document.getElementById('edit-provider-name');
+  document.getElementById('edit-form').action = 'scholar-provider-update.php?q='+id;
   inputTextelem.value = listelem.innerHTML;
+
+}
+function editSchool(id){
+  var listelem = document.getElementById('edit'+id);
+  var inputTextelem = document.getElementById('edit-school-name');
+  document.getElementById('school-name-edit-form').action = 'update-school.php?q='+id;
+  inputTextelem.value = listelem.innerHTML;
+
+}
+
+function editSubAdmin(id) {
+//  var schoolnameEscape = escape(schoolname);
+  var listelem = document.getElementById('subadmin'+id);
+  var schoolName = document.getElementById('schooladmin'+id);
+//  document.getElementById('selectdefaultprovider').innerHTML = schoolName.innerHTML;
+ console.log(schoolName.innerHTML);
+  var inputTextelem = document.getElementById('update-username');
+  document.getElementById('edit-sub-admin-form').action = 'update-sub-admin.php?q='+id;
+  inputTextelem.value = listelem.innerHTML;
+
 
 }

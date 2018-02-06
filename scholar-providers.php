@@ -35,8 +35,7 @@
              <div class="row list-title-scholars">
               <div class="col s1 red-text lighten-2 center ">
 
-                     <?php  echo $_SESSION['error'];?>
-
+                   <?php  echo $_SESSION['error'];?>
                    <?php $_SESSION['error'] ='';?>
 
               </div>
@@ -87,7 +86,7 @@
           <ul class="collapsible">
             <li>
               <div class='collapsible-header'>
-                <div class='col s12 blue-text text-lighten-2  '>Scholar Provider Names</div>
+                <div class='col s12 blue-text text-lighten-2'>Scholar Provider Names</div>
               </div>
             </li>
             <?php
@@ -103,13 +102,11 @@
                 <li>
                   <div class='collapsible-header'>
                     <div class='col s10 blue-text text-lighten-2' id='edit$id'>".$row['provider_name']."</div>
+                      <div class='col s1'>
+                          <i class='material-icons small blue-text modal-trigger' href='#edit-modal' onclick='editProviderid(".$row['provider_id'].");'>edit</i>
+                      </div>
                     <div class='col s1'>
-
-                        <i class='material-icons small blue-text modal-trigger' href='#edit-modal' onclick='editProviderid(".$row['provider_id'].");'>edit</i>
-
-                    </div>
-                    <div class='col s1'>
-                      <a href = 'scholar_delete.php?q=". $row['provider_id']. "'>
+                      <a href = 'provider-delete.php?q=". $row['provider_id']. "'>
                         <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
                       </a>
                     </div>
@@ -127,9 +124,6 @@
 
 
         </div>
-
-
-
          </div>
       </div>
     </div>
@@ -150,6 +144,7 @@
              <div class="modal-content">
               <BUTTON class="waves-effect white-text waves-light btn teal" type="submit" name="save"><input class="white-text" type="submit" name="save" value="Save Data"></BUTTON>
              </div>
+
           </form>
           </div>
         </div>
@@ -162,18 +157,17 @@
       <h5>Edit Provider Name</h5>
       <div class="card-action">
         <div class="row">
-           <form class="col s12" method="post" action="provider-insert.php">
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="edit-provider-name" name="provider-name" type="text" class="validate" value="l">
-              <label for="edit-provider-name">Provider Name</label>
+           <form class="col s12" id ='edit-form' method="post">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="edit-provider-name" name="provider-name" type="text" class="validate" value="l">
+                <label for="edit-provider-name">Provider Name</label>
+              </div>
             </div>
-          </div>
-
-           <div class="modal-content">
-            <BUTTON class="waves-effect white-text waves-light btn teal" type="submit" name="save"><input class="white-text" type="submit" name="save" value="Save Data"></BUTTON>
-           </div>
-        </form>
+             <div class="modal-content">
+              <BUTTON class="waves-effect white-text waves-light btn teal" type="submit" name="save"><input class="white-text" type="submit" name="save" value="Save Data"></BUTTON>
+             </div>
+          </form>
         </div>
       </div>
     </div>
