@@ -134,16 +134,18 @@
 														 # code...
 														 while ($row = $provider_result->fetch_assoc()) {
 															 # code...
+															 $value = $row['provider_name'];
+															 $id_value = $row['provider_id'];
 															if ($row['provider_name'] == $_SESSION['provider']) {
 																# code...
-																$value = $row['provider_name'];
-																$id_value = $row['provider_id'];
+
+
 
 
 																echo "<option id='defaultprovider' value='$id_value'selected>$value</option>";
 															}else {
 																# code...
-																$value = $row['provider_name'];
+															
 																echo "<option id='defaultprovider' value='$id_value'>$value</option>";
 															}
 														 }

@@ -47,7 +47,8 @@
             if ($row['role']=='student') {
               # code...
               header("location:student.php");
-
+              $_SESSION['login_user'] = $myusername;
+                $_SESSION['user_id'] = $row['id'];
             }
             if ($row['role']=='admin') {
               $_SESSION['login_user'] = $myusername;
@@ -55,8 +56,11 @@
               $_SESSION['search_item']=null;
                 header("location:admin-scholar.php?q=");
               # code...
-            }if ($row['role']=='subadmin') {
-                header("location:subadmin.php");
+            }if ($row['role']=='sub-admin') {
+                header("location:sub-admin-scholar.php");
+                $_SESSION['schoolhandle'] = $row['school_handled'];
+                $_SESSION['login_user'] = $myusername;
+                $_SESSION['user_id'] = $row['id'];
               # code...
             }
         }
@@ -163,10 +167,7 @@
                   <BUTTON class="waves-effect waves-light btn blue lighten-2" type="submit" name="save"><input type="submit" name="save" value="Proceed"></BUTTON>
                  </div>
                 </div>
-
               </form>
-
-
             </div>
           </div>
         </div>

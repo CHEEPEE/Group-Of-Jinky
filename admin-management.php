@@ -34,7 +34,7 @@
 
         <div class="row">
           <div class="col s6">
-            <h6>Sub Admins</h6>
+            <h5>Sub Admins</h5>
 
             <div class="row">
               <div class="col s6">
@@ -114,7 +114,7 @@
 
           </div>
           <div class="col s6">
-            <h6>Edit Your Profile</h6>
+            <h5>Edit Your Profile</h5>
             <form action="adminchangepass.php?q=<?php echo $_SESSION['user_id'];?>" method="POST">
                 <div class="row">
                   <div class="col s6">
@@ -138,12 +138,14 @@
                       <input id="confirm_new_password" name="confirm_new_password" type="password" class="validate"  onkeyup='check();'>
                       <label for="confirm_new_password">Confirm New Password</label>
                     </div>
+                    <div class="col s12">
+                      <input id='submit-btn' class="btn blue lighten-2" type="submit" name="Submit" >
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <input id='submit-btn' class="btn blue lighten-2" type="submit" name="Submit" >
-                </div>
-                <span id='message'></span>
+                <span id='message'><?php echo  $_SESSION['change_pass_error'];
+                $_SESSION['change_pass_error'] = "";
+                ?></span>
               </form>
 
           </div>
@@ -151,7 +153,7 @@
         </div>
     </div>
     <div class="col s12">
-      <h6>Student Profiles</h6>
+      <h5>Student Profiles</h5>
       <div class="row">
         <div class="col s6">
           <div class="row">
@@ -207,6 +209,22 @@
             <div class="col s12">
               <a href="#add-school-modal" class="btn blue lighten-2 modal-trigger">Add School</a>
             </div>
+          </div>
+        </div>
+        <div class="col s6">
+          <h5>Reset Student Password</h5>
+          <div class="row">
+
+            <form class="" action="student-reset-password.php" method="post">
+              <div class="input-field col s10">
+                <input id="student-number" name="student-number" type="text" class="validate"  onkeyup='check();'>
+                <label for="student-number">Student Number</label>
+                <input id='submit-btn' class="btn blue lighten-2" type="submit" name="Submit" value="Reset Password" >
+              </div>
+
+
+            </form>
+
           </div>
         </div>
       </div>

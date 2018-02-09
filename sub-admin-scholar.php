@@ -36,9 +36,6 @@
     }
    $sql = $sql."ORDER BY last_name";
 
-
-
-
 $result = $conn->query($sql);
 $row_cnt = $result->num_rows;
 
@@ -65,7 +62,7 @@ if ($provider_name_result->num_rows>0) {
 
 <body class=" fullheight">
   <!-- Dropdown Structure -->
-  <?php include 'navbar.php';
+  <?php include 'sub-admin-side-nav.php';
 
   ?>
   </div>

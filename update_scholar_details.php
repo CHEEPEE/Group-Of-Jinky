@@ -18,28 +18,23 @@ $provider = $_POST['provider'];
 
 $provider_session = $_SESSION['provider'];
 
-echo $studentNumber;
-echo $firstname;
-echo $lastname;
-echo $middlename;
-echo $school;
-echo $course;
-echo $yearlevel;
-echo $municipality;
-echo $status;
+// echo $studentNumber;
+// echo $firstname;
+// echo $lastname;
+// echo $middlename;
+// echo $school;
+// echo $course;
+// echo $yearlevel;
+// echo $municipality;
+// echo $status;
 echo $provider;
 
 
  $sql = "UPDATE student_list_scholars SET student_number = '$id',first_name='$firstname',last_name='$lastname',middle_name = '$middlename',school='$school',course='$course',year_level='$yearlevel',municipality = '$municipality',status = '$status', scholar_provider = '$provider',requirements_status = '$requirements_status' WHERE student_number = '$id' AND scholar_provider = '$provider_session'";
 if ($conn->query($sql) === TRUE) {
  $_SESSION['update_studentn_number'] = "";
-   $_SESSION['error'] = 'Updated successfully';
- if ($provider == "Loren Legarda") {
-   # code...
-   header("location:admin-scholar-loren-legarda.php");
- }else{
-   header("location:admin-scholar-cadiao.php");
- }
+ $_SESSION['error'] = 'Updated successfully';
+ header("location:admin-scholar.php?q=");
 
 } else {
    echo "Error updating record: " . $conn->error;

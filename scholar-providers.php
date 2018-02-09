@@ -54,20 +54,6 @@
                 <div class="input-field col s3">
                    <a class="waves-effect waves-light btn modal-trigger blue" href="#modal1">Add Scholar Provider</a>
                 </div>
-                <div class="input-field col s3 offset-s5">
-                  <form method="post" action="searchthis-loren.php">
-                    <div class="$row">
-                      <div class="col s12">
-                        <label for="search">Search</label>
-                        <input id="search" type="text" name="search" class="validate">
-                      </div>
-                      <div class="col s4">
-                        <input type="submit" class="btn blue lighten-2 white-text" value="Search">
-                      </div>
-                    </div>
-                  </form>
-
-                </div>
               </div>
 
 

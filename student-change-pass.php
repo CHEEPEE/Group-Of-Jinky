@@ -18,8 +18,7 @@ if ($result->num_rows>0) {
   $insertSql = "UPDATE users SET password = '$new_password' WHERE id =$userId";
   # code...
   if ($conn->query($insertSql) === TRUE) {
-   header("location:admin-management.php");
-     $_SESSION['change_pass_error'] = "Success";
+  // header("location:student-manage-account.php");
   }else {
     echo "Error: " .$conn->error;
   }
@@ -28,7 +27,7 @@ if ($result->num_rows>0) {
 }else {
   # code...
   $_SESSION['change_pass_error'] = "wrong Password";
-  header("location:admin-management.php");
+  //header("location:student-manage-account.php");
 
 
 }
