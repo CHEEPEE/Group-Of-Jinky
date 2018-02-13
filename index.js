@@ -59,3 +59,14 @@ function editSubAdmin(id) {
 
 
 }
+function editSchoolYearSem(id) {
+  var listelem = document.getElementById('yearsem'+id);
+//  document.getElementById('selectdefaultprovider').innerHTML = schoolName.innerHTML;
+  var inputTextelem = document.getElementById('yearsem');
+  document.getElementById('yearsem-name-edit-form').action = 'update-yearsem.php?q='+id;
+  inputTextelem.value = listelem.innerHTML;
+}
+function setYearsem(id){
+alert(""+id);
+window.location.href = "admin-scholar.php?q=&sys="+id;
+}

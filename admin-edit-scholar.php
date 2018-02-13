@@ -8,21 +8,22 @@
 	include 'sessions.php';
 
 
-	  $student_number ="";
-	  $student_number = $_REQUEST["q"];
-	  $firstname="";
-	  $lastname = "";
-	  $middlename = "";
-	  $schoolraw = "";
+  $student_number ="";
+  $student_number = $_REQUEST["q"];
+  $firstname="";
+  $lastname = "";
+  $middlename = "";
+  $schoolraw = "";
 
-	  $course = "";
-	  $yearlevel = "";
-	  $municipality = "";
-	  $status = "";
-	  $scolar_provider = "";
-	  $_SESSION['update_studentn_number'] = $student_number;
-	  $provider_session = $_SESSION['provider'];
-		$req_stat = "";
+  $course = "";
+  $yearlevel = "";
+  $municipality = "";
+  $status = "";
+  $scolar_provider = "";
+  $_SESSION['update_studentn_number'] = $student_number;
+  $provider_session = $_SESSION['provider'];
+	$req_stat = "";
+	$sysid = $_REQUEST['sys'];
 
 
 	include 'dbconnect.php';
@@ -85,7 +86,7 @@
  					<h5>Edit Scholar Details</h5>
 				      <div class="card-action">
 				      	<div class="row">
-				      		 <form class="col s12" method="post" action="update_scholar_details.php">
+				      		 <form class="col s12" method="post" action="update_scholar_details.php?=<?php echo $provider_session;?>&sys=<?php echo $sysid?>">
 						      <div class="row">
 						      	<div class="input-field col s2">
 						          <input id="student-number" disabled name="student-number" type="text" class="validate" value="<?php echo $student_number;?>">
@@ -105,10 +106,38 @@
 						        </div>
 						      </div>
 						      <div class="row">
-						      	<div class="input-field col s3">
+						      	<!-- <div class="input-field col s3">
 						          <input id="school" name="school" type="text" class="validate" value="<?php echo $school;?>">
 						          <label for="school">School</label>
-						        </div>
+						        </div> -->
+										<div class="input-field col s4">
+											<select name="school">
+												<?php
+												$sqlgetProvider = "SELECT * FROM school_list;";
+												$provider_result = $conn->query($sqlgetProvider);
+													if ($provider_result->num_rows>0) {
+														# code...
+														while ($row = $provider_result->fetch_assoc()) {
+															# code...
+															$value = $row['school_list'];
+															$id_value = $row['id'];
+														if ($school==$row['school_list']) {
+															# code...
+															 echo "<option id='defaultprovider' value='$value' selected>$value</option>";
+														}else {
+															# code...
+															echo "<option id='defaultprovider' value='$value'>$value</option>";
+														}
+
+
+														}
+													}
+												?>
+
+
+									 </select>
+									 <label>School</label>
+									 </div>
 						        <div class="input-field col s3">
 						          <input id="course" name="course" type="text" class="validate" value="<?php echo $course;?>">
 						          <label for="course">Course</label>
@@ -136,16 +165,11 @@
 															 # code...
 															 $value = $row['provider_name'];
 															 $id_value = $row['provider_id'];
-															if ($row['provider_name'] == $_SESSION['provider']) {
+															if ($row['provider_id'] == $_SESSION['provider']) {
 																# code...
-
-
-
-
-																echo "<option id='defaultprovider' value='$id_value'selected>$value</option>";
+																echo "<option id='defaultprovider' value='$id_value' selected>$value</option>";
 															}else {
 																# code...
-															
 																echo "<option id='defaultprovider' value='$id_value'>$value</option>";
 															}
 														 }
@@ -158,8 +182,8 @@
 						        </div>
 						        <div class="input-field col s2">
 						           <select name="requirements_status">
-								      <option id="defaultprovider1" value="<?php echo $req_stat;?>" selected><?php echo $req_stat;?></option>
-								     	<option id="optionprovider1" value="Complete">Complete</option>
+								      <option id="requirements_status_1" value="<?php echo $req_stat;?>" selected><?php echo $req_stat;?></option>
+								     	<option id="requirements_status_2" value=""></option>
 
 								    </select>
 								    <label>Scholarship Provider</label>
@@ -196,25 +220,18 @@
      <script type="text/javascript">
 			function selectOptions(){
 				var getprovider = document.getElementById("defaultprovider").innerHTML;
-				var getprovider1 = document.getElementById("defaultprovider1").innerHTML;
-
-				if (getprovider == "Loren Legarda") {
-					document.getElementById("optionprovider").innerHTML = "Rhodora Cadiao";
-					document.getElementById("optionprovider").value = "Rhodora Cadiao";
-
-				}else{
-					document.getElementById("optionprovider").innerHTML = "Loren Legarda";
-					document.getElementById("optionprovider").value = "Loren Legarda";
-				}
+				var getprovider1 = document.getElementById("requirements_status_1").innerHTML;
 				if (getprovider1 == "Complete") {
-					document.getElementById("optionprovider1").innerHTML = "Incomplete";
-					document.getElementById("optionprovider1").value = "Incomplete";
+					document.getElementById("requirements_status_2").innerHTML = "Incomplete";
+					document.getElementById("requirements_status_2").value = "Incomplete";
 
 				}else{
-					document.getElementById("optionprovider1").innerHTML = "Complete";
-					document.getElementById("optionprovider1").value = "Complete";
+					document.getElementById("requirements_status_2").innerHTML = "Complete";
+					document.getElementById("requirements_status_2").value = "Complete";
 				}
 			}
+			selectOptions();
+
 
 
      </script>

@@ -153,8 +153,9 @@
         </div>
     </div>
     <div class="col s12">
-      <h5>Student Profiles</h5>
+
       <div class="row">
+        <h5>Student Profiles</h5>
         <div class="col s6">
           <div class="row">
             <div class="col s12">
@@ -228,6 +229,68 @@
           </div>
         </div>
       </div>
+      <!-- end of second section -->
+      <!-- section III -->
+      <div class="row">
+        <div class="col s6">
+          <h5>School Year And Semester</h5>
+          <div class="row">
+            <div class="col s12">
+                <a class="btn blue lighten-2 modal-trigger" href="#schoolyear-semester-modal">Add School Year And Semester</a>
+            </div>
+            <div class="col s12">
+              <!-- school Year List -->
+              <div class="$row">
+                <div class="col s12">
+                  <ul class="collapsible">
+                    <li>
+                      <div class='collapsible-header'>
+                        <div class='col s12 blue-text text-lighten-2'>School Year And Semester</div>
+                      </div>
+                    </li>
+                    <?php
+
+                    $sql = "SELECT * FROM school_yeara_sem_list;";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows>0) {
+                      # code...
+                      while ($row = $result->fetch_assoc()) {
+                        $id = $row['id'];
+                        # code...
+                        echo "
+                        <li>
+                          <div class='collapsible-header'>
+                            <div class='col s10 blue-text text-lighten-2' id='yearsem$id'>".$row['school_year_sem']."</div>
+                              <div class='col s1'>
+                                  <i class='material-icons small blue-text modal-trigger' href='#edit-yearsem-modal' onclick='editSchoolYearSem(".$row['id'].");'>edit</i>
+                              </div>
+                            <div class='col s1'>
+                              <a href = 'delete-yearsem.php?q=". $row['id']."'>
+                                <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
+                              </a>
+                            </div>
+                          </div>
+                        </li>
+                        ";
+                      }
+                    }
+                    ?>
+
+                  </ul>
+                </div>
+              </div>
+
+              <!-- end school Year -->
+
+            </div>
+          </div>
+
+
+        </div>
+        <!-- end of section III -->
+
+
+      </div>
     </div>
   <!-- Modal Structure add-sub admin -->
   <div id="add-sub-admin-modal" class="modal">
@@ -276,6 +339,27 @@
               <BUTTON id="sub-admin-submit-btn" class="waves-effect white-text waves-light btn teal" type="submit" name="save"><input class="white-text" type="submit" name="save" value="Save Data"></BUTTON>
              </div>
                 <span id="sub-admin-message"></span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal school year and semester -->
+  <div id="schoolyear-semester-modal" class="modal">
+    <div class="modal-content">
+      <h5>School Year and Semester</h5>
+      <div class="card-action">
+        <div class="row">
+           <form class="col s12" id ='edit-form'  method="post" action="add-school-year-semester.php">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="schoolyear-semester" name="schoolyear-semester" type="text" class="validate" value="">
+                <label for="schoolyear-semester">School Year And Semester</label>
+              </div>
+            </div>
+             <div class="modal-content">
+              <BUTTON id="submit-btn" class="waves-effect white-text waves-light btn teal" type="submit" name="save"><input class="white-text" type="submit" name="save" value="Save Data"></BUTTON>
+             </div>
           </form>
         </div>
       </div>
@@ -357,6 +441,28 @@
               <div class="input-field col s12">
                 <input id="edit-school-name" placeholder="School" name="edit-school-name" type="text" class="validate" value="">
                 <label for="edit-school-name">School Name</label>
+              </div>
+            </div>
+             <div class="modal-content">
+              <BUTTON class="waves-effect white-text waves-light btn teal" type="submit" name="save"><input class="white-text" type="submit" name="save" value="Save Data"></BUTTON>
+             </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- edit school-year-sem -->
+  <div id="edit-yearsem-modal" class="modal">
+    <div class="modal-content">
+      <h5>Edit School</h5>
+      <div class="card-action">
+        <div class="row">
+           <form class="col s12" id ='yearsem-name-edit-form'  method="post" action="update-school.php">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="yearsem" placeholder="School" name="yearsem" type="text" class="validate" value="">
+                <label for="yearsem">School Year And Semester</label>
               </div>
             </div>
              <div class="modal-content">

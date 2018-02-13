@@ -20,7 +20,7 @@
               <li><a href="announcements-page.php">Anouncements</a></li>
               <li><a href="#structure">About</a></li>
               <li><a href="#initialization">Grant</a></li>
-              <li><a href="#initialization">Sign In</a></li>
+              <li><a href="index.php">Sign In</a></li>
   		      </ul>
   		    </div>
   		  </nav>

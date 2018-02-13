@@ -13,6 +13,7 @@ $yearlevel = $_POST['year-level'];
 $municipality = $_POST['municipality'];
 $status = $_POST['status'];
 $provider = $_SESSION['provider'];
+$schoolyearsem = $_REQUEST['sysid'];
 
 echo $studentNumber;
 echo $firstname;
@@ -24,7 +25,6 @@ echo $yearlevel;
 echo $municipality;
 echo $status;
 
-
 $searchql = "SELECT student_number,scholar_provider FROM student_list_scholars WHERE student_number LIKE '$studentNumber'";
 $result = $conn->query($searchql);
 
@@ -35,24 +35,14 @@ if ($result->num_rows== 1) {
       	if ($row['scholar_provider']==$provider) {
       		# code...
       		$_SESSION['error'] = 'Student Already been Inserted';
-      		if ($provider == "Loren Legarda") {
-      			# code...
-      			header("location:admin-scholar-loren-legarda.php");
-      		}else{
-      			header("location:admin-scholar-cadiao.php");
-      		}
-      	}else
+      	}
+        else
       	{
-      		$sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status)
-			VALUES ('$studentNumber','$firstname','$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete')";
+      		$sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem)
+			VALUES ('$studentNumber','$firstname','$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete',$schoolyearsem)";
 
 			if ($conn->query($sql) === TRUE) {
 			     $_SESSION['error'] = '';
-		     	if ($provider == "Loren Legarda") {
-      			header("location:admin-scholar-loren-legarda.php");
-      		}else{
-      			header("location:admin-scholar-cadiao.php");
-      		}
 			} else {
 			     $_SESSION['error'] = "Error: " . $sql . "<br>" . $conn->error;;
 		     		if ($provider == "Loren Legarda") {
@@ -74,13 +64,13 @@ if ($result->num_rows== 1) {
 	}
 } elseif ($result->num_rows ==0) {
 	# code...
-	   $sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status)
-	VALUES ('$studentNumber', '$firstname', '$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete')";
+	   $sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem )
+	VALUES ('$studentNumber', '$firstname', '$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete','$schoolyearsem')";
 
 	if ($conn->query($sql) === TRUE) {
 	     $_SESSION['error'] = '';
        $provider = $_SESSION['provider'];
-     		$location = 'location:admin-scholar.php?q='.$provider;
+     		$location = 'location:admin-scholar.php?q='.$provider.'&sys='.$schoolyearsem;
         header($location);
 	} else {
 	     $_SESSION['error'] = "Error: " . $sql . "<br>" . $conn->error;;

@@ -13,6 +13,4 @@ if ($conn->query($sql)===TRUE) {
   # code...
     echo "Error updating record: " . $conn->error;
 }
-
-
 ?>

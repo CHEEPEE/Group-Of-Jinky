@@ -11,8 +11,8 @@ $course = $_POST['course'];
 $yearlevel = $_POST['year-level'];
 $municipality = $_POST['municipality'];
 $status = $_POST['status'];
+$sysid = $_REQUEST['sys'];
 $requirements_status = $_POST['requirements_status'];
-
 $id =  $_SESSION['update_studentn_number'];
 $provider = $_POST['provider'];
 
@@ -34,7 +34,7 @@ echo $provider;
 if ($conn->query($sql) === TRUE) {
  $_SESSION['update_studentn_number'] = "";
  $_SESSION['error'] = 'Updated successfully';
- header("location:admin-scholar.php?q=");
+ header("location:admin-scholar.php?q=$provider_session&sys=$sysid");
 
 } else {
    echo "Error updating record: " . $conn->error;

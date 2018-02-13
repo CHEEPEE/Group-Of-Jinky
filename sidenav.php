@@ -11,11 +11,12 @@ $provider_result = $conn->query($sql);
           <div class="collapsible-body">
             <ul class="blue darken-2">
               <?php
+              $session_sys = $_SESSION['sys'];
                 if ($provider_result->num_rows>0) {
                   # code...
                   while ($row = $provider_result->fetch_assoc()) {
                     # code...
-                    echo "  <li class='' ><a href='admin-scholar.php?q=".$row['provider_id']."' class='white-text' >".$row['provider_name']."</a></li>
+                    echo "  <li class='' ><a href='admin-scholar.php?q=".$row['provider_id']."&sys=".$session_sys."' class='white-text' >".$row['provider_name']."</a></li>
                       ";
                   }
                 }

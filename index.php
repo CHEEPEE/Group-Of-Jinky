@@ -1,45 +1,27 @@
    <?php
-
-   // include("config.php");
    session_start();
    $_SESSION['error']="";
    $error = "";
-
+   $_SESSION['change_pass_error'] = "";
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form
 
-    //   $myusername = mysqli_real_escape_string($conn,$_POST['username']);
-    //   $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
-    //
-    //   $sql = "SELECT id,role FROM admins WHERE username = '$myusername' and password = '$mypassword'";
-    //
-    // $queryrole = mysqli_query($db,"SELECT role FROM admins WHERE username = '$myusername' and password = '$mypassword'");
-    // $row = mysqli_fetch_array($queryrole,MYSQLI_ASSOC);
-    //  $adminrole = $row["role"];
-    //    echo $adminrole;
-    //   $result = $conn->query($sql);
-    //     if ($result->num_rows == 1) {
-    //         // output data of each row
-    //         //session_register($username);
-    //         if ($adminrole=="superadmin"){
-    //              $_SESSION['login_user'] = $myusername;
-    //              $_SESSION['search_item']=null;
-    //             header("location: admin-scholar.php?q= ");
-    //         }else{
-    //              $_SESSION['login_user'] = $myusername;
-    //             header("location: adminpanel_account_setting.php");
-    //         }
-    //
-    //     } else {
-    //         $error = "Your Login Name or Password is invalid";
-    //
-    //     }
 
     include 'dbconnect.php';
     $myusername = mysqli_real_escape_string($conn,$_POST['username']);
     $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
     $hashedPassword = md5($mypassword);
+
+    $yearsemsql="SELECT * FROM school_yeara_sem_list ORDER BY id DESC LIMIT 1;";
+    $sysResult = $conn->query($yearsemsql);
+    if ($sysResult->num_rows>0) {
+      # code...
+      while ($sysrow = $sysResult->fetch_assoc()) {
+        # code...
+        $_SESSION['sys']=$sysrow['id'];
+      }
+    }
+
     $sql = "SELECT * FROM users WHERE username = '$myusername' AND password = '$hashedPassword'";
     $result  = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -48,13 +30,14 @@
               # code...
               header("location:student.php");
               $_SESSION['login_user'] = $myusername;
-                $_SESSION['user_id'] = $row['id'];
+              $_SESSION['user_id'] = $row['id'];
             }
             if ($row['role']=='admin') {
+              $sys =   $_SESSION['sys'];
               $_SESSION['login_user'] = $myusername;
               $_SESSION['user_id'] = $row['id'];
               $_SESSION['search_item']=null;
-                header("location:admin-scholar.php?q=");
+                header("location:admin-scholar.php?q=&sys=".$sys);
               # code...
             }if ($row['role']=='sub-admin') {
                 header("location:sub-admin-scholar.php");
@@ -142,9 +125,13 @@
                           </div>
                         </div>
                       </form>
+
                   </div>
+
              </div>
+
           </div>
+            <a href="homepage.php" class="">  <div class='chip white-text  blue lighten-2'> Homepage </div></a>
         </div>
         <div class="col l3 m2"></div>
         <!-- Modal Structure -->
