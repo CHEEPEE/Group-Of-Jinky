@@ -311,6 +311,7 @@
                   $provider_result = $conn->query($sqlgetProvider);
                     if ($provider_result->num_rows>0) {
                       # code...
+                      
                     echo "<option id='defaultprovider' value='' selected></option>";
                       while ($row = $provider_result->fetch_assoc()) {
                         # code...
