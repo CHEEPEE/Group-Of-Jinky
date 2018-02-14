@@ -13,6 +13,20 @@
   $search = $_SESSION['search_item'];
   $array_search = explode(" ",$search);
   $provider = $_REQUEST["q"];
+  $schoolyearSemId = '';
+  $sys =  $_REQUEST['sys'];
+  $schoolid = $_SESSION['schoolhandle'];
+  $selectSchool = "SELECT * FROM school_list WHERE id =$schoolid";
+  $schoolname;
+  $schoolResult = $conn->query($selectSchool);
+  if ($schoolResult->num_rows>0) {
+    # code...
+    while ($row=$schoolResult->fetch_assoc()) {
+      # code...
+      $schoolname = $row['school_list'];
+    }
+  }
+
 
   if ($provider == null) {
     # code...
@@ -24,21 +38,23 @@
       while ($row = $firstProviderResult->fetch_assoc()) {
         # code...
         $provider = $row['provider_id'];
+        $_SESSION['provider'] =$row['provider_id'];
       }
     }
-  }
-
+  }else {
     # code...
-    $sql = "SELECT * FROM student_list_scholars WHERE scholar_provider = '$provider'";
+      $_SESSION['provider'] = $_REQUEST["q"];
+  }
+    # code...
+    $sql = "SELECT * FROM student_list_scholars WHERE scholar_provider = '$provider' AND school_year_sem =$sys AND school LIKE '%$schoolname%'  ";
     foreach ($array_search as $value)
     {
-    $sql =$sql. "AND (student_number LIKE '%$value%' OR year_level = '$value' OR first_name LIKE '%$value%' OR last_name LIKE '%$value%' OR middle_name LIKE '%$value%' OR school LIKE '%$value%' OR course LIKE '%$value%' OR municipality LIKE '%$value%' OR status LIKE '%$value%' OR requirements_status = '$value' )";
+    $sql =$sql. "AND (student_number LIKE '%$value%' OR year_level = '$value' OR first_name LIKE '%$value%' OR last_name LIKE '%$value%' OR middle_name LIKE '%$value%' OR course LIKE '%$value%' OR municipality LIKE '%$value%' OR status LIKE '%$value%' OR requirements_status = '$value' )";
     }
-   $sql = $sql."ORDER BY last_name";
+   $sql = $sql."ORDER BY id DESC";
 
 $result = $conn->query($sql);
 $row_cnt = $result->num_rows;
-
 $sqlProvider_name = "SELECT * FROM scholar_provider WHERE provider_id = '$provider'";
 $provider_name_result = $conn->query($sqlProvider_name);
 $provider_name;
@@ -62,7 +78,7 @@ if ($provider_name_result->num_rows>0) {
 
 <body class=" fullheight">
   <!-- Dropdown Structure -->
-  <?php include 'sub-admin-side-nav.php';
+  <?php include 'sub-navbar.php';
 
   ?>
   </div>
@@ -70,7 +86,7 @@ if ($provider_name_result->num_rows>0) {
 
    <div class="row fullheight main-content">
 
-    <?php include 'sidenav.php';?>
+    <?php include 'sub-sidenav.php';?>
     <div class="col s12 fullheight ">
       <div class="row">
          <nav class="listcontainer">
@@ -96,6 +112,41 @@ if ($provider_name_result->num_rows>0) {
               <div class="col s4 ">
                  <h5 class=" blue-text lighten-2">List of Scholars</h5>
               </div>
+              <div class="col s6">
+                <form class="" method="post" action ="sub-get-school-year-sem.php">
+
+                  <div class="input-field col s6">
+                    <select name="sys">
+                      <?php
+                      $sqlgetProvider = "SELECT * FROM school_yeara_sem_list ORDER BY id DESC;";
+                      $provider_result = $conn->query($sqlgetProvider);
+                        if ($provider_result->num_rows>0) {
+                          while ($row = $provider_result->fetch_assoc()) {
+                            # code...
+                            $value = $row['school_year_sem'];
+                            $id_value = $row['id'];
+                            if ($sys==$row['id']) {
+                              # code...
+                              echo "<option id='defaultprovider".$id_value."' value='$id_value' selected onSelect='setYearsem('$id_value')'>$value</option>";
+
+                            }else {
+                              echo "<option id='defaultprovider".$id_value."' value='$id_value'  onSelect='setYearsem('$id_value')'>$value</option>";
+                            }
+                            $schoolyearSemId = $id_value;
+
+                          }
+                        }
+                      ?>
+                 </select>
+                 <label>School Year and Semester</label>
+                </div>
+                <div class=" input-field col s1">
+                    <input type="submit" class='chip teal white-text teal lighten-2' value="Go">
+                </div>
+              </form>
+            </div>
+
+
               <div class="col s1 right">
                    <div class='chip teal white-text teal lighten-2'>
                          Print
@@ -109,7 +160,7 @@ if ($provider_name_result->num_rows>0) {
                    <a class="waves-effect waves-light btn modal-trigger blue" href="#modal1">Add Scholar</a>
                 </div>
                 <div class="input-field col s3 offset-s5">
-                  <form method="post" action="searchthis.php">
+                  <form method="post" action="searchthis-sub-admin.php?sys=<?php echo $sys;?>">
                     <div class="$row">
                       <div class="col s12">
                         <label for="search">Search</label>
@@ -130,7 +181,7 @@ if ($provider_name_result->num_rows>0) {
               <h5>Add New Scholar</h5>
               <div class="card-action">
                 <div class="row">
-                   <form class="col s12" method="post" action="scholar_insert.php">
+                   <form class="col s12" method="post" action="scholar_insert.php?sysid=<?php echo $sys;?>">
                   <div class="row">
                     <div class="input-field col s2">
                       <input id="student-number" name="student-number" type="text" class="validate">
@@ -150,10 +201,12 @@ if ($provider_name_result->num_rows>0) {
                     </div>
                   </div>
                   <div class="row">
-                    <div class="input-field col s3">
-                      <input id="school" name="school" type="text" class="validate">
-                      <label for="school">School</label>
-                    </div>
+                    <div class="input-field col s4">
+                      <select name="school">
+                      <option id='defaultprovider' value='<?php echo $schoolname;?>' selected><?php echo $schoolname;?></option>
+                   </select>
+                   <label>School</label>
+                   </div>
                     <div class="input-field col s3">
                       <input id="course" name="course" type="text" class="validate">
                       <label for="course">Course</label>
@@ -221,9 +274,7 @@ if ($provider_name_result->num_rows>0) {
 
             </li>
 
-                  <?php
-
-
+              <?php
               if ($result->num_rows > 0) {
                   // output data of each row
 
@@ -254,12 +305,12 @@ if ($provider_name_result->num_rows>0) {
 
                         </div>
                         <div class='col s1'>
-                          <a href = 'admin-edit-scholar.php?q=". $row['student_number']. "'>
+                          <a href = 'sub-admin-edit-scholar.php?q=". $row['student_number']. "&sys=".$sys."'>
                             <i class='material-icons small blue-text'>edit</i>
                           </a>
                         </div>
                         <div class='col s1'>
-                          <a href = 'scholar_delete.php?q=". $row['student_number']. "'>
+                          <a href = 'scholar_delete.php?q=".$row['student_number']."&sys=".$sys."'>
                             <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
                           </a>
                         </div>
@@ -291,27 +342,15 @@ if ($provider_name_result->num_rows>0) {
                        </div>
                       </div>
                     </li>";
-
-
                   }
               } else {
                   echo "<script> M.toast({html: 'Zero Result', classes: 'rounded'});</script>";
 
               }
-
-
             ?>
-
             </ul>
-
-
           </div>
-
-
         </div>
-
-
-
          </div>
       </div>
     </div>

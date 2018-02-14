@@ -40,7 +40,8 @@
                 header("location:admin-scholar.php?q=&sys=".$sys);
               # code...
             }if ($row['role']=='sub-admin') {
-                header("location:sub-admin-scholar.php");
+                $sys =   $_SESSION['sys'];
+                header("location:sub-admin-scholar.php?q=&sys=".$sys);
                 $_SESSION['schoolhandle'] = $row['school_handled'];
                 $_SESSION['login_user'] = $myusername;
                 $_SESSION['user_id'] = $row['id'];

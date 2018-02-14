@@ -148,7 +148,7 @@ if ($provider_name_result->num_rows>0) {
                    <a class="waves-effect waves-light btn modal-trigger blue" href="#modal1">Add Scholar</a>
                 </div>
                 <div class="input-field col s3 offset-s5">
-                  <form method="post" action="searchthis.php">
+                  <form method="post" action="searchthis.php?sys=<?php echo $sys;?>">
                     <div class="$row">
                       <div class="col s12">
                         <label for="search">Search</label>
