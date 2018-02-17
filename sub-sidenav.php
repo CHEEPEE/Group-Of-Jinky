@@ -31,6 +31,27 @@ $provider_result = $conn->query($sql);
         <li>
           <a href="sub-announcements.php" class="collapsible-header white-text">Announcements<i class="material-icons announcement  icon white-text"></i></a>
         </li>
+        <li>
+          <a class="collapsible-header white-text modal-trigger" href="#modal1">Reset Student Password<i class="material-icons undo icon white-text"></i></a>
+        </li>
       </ul>
     </li>
   </ul>
+
+  <div id="modal1" class="modal">
+  <div class="modal-content">
+    <div class="col s6">
+      <h5>Reset Student Password</h5>
+      <div class="row">
+
+        <form class="" action="sub-student-reset-password.php" method="post">
+          <div class="input-field col s10">
+            <input id="student-number" name="student-number" type="text" class="validate"  onkeyup='check();'>
+            <label for="student-number">Student Number</label>
+            <input id='submit-btn' class="btn blue lighten-2" type="submit" name="Submit" value="Reset Password" >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

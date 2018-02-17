@@ -48,7 +48,7 @@
 	height: 300px;
 }
 .sections-custom{
-	height: 700px;
+	min-height: 100vh;
 }
 .newsfeedcard{
 	margin-top: 10px;
@@ -92,4 +92,7 @@
 .studentinfo-custom{
 	padding-left: 30px;
 	padding-top: 50px;
+}
+.section-two-about-contact{
+	padding-top: 20px;
 }
