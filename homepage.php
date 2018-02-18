@@ -19,7 +19,7 @@
               <li><a href="#introduction">Home</a></li>
               <li><a href="announcements-page.php">Anouncements</a></li>
               <li><a href="#about">About</a></li>
-              <li><a href="#initialization">Grant</a></li>
+              <li><a href="#grant">Grant</a></li>
               <li><a href="index.php">Sign In</a></li>
   		      </ul>
   		    </div>
@@ -105,9 +105,136 @@
         </div>
 
         <div class="sections-custom">
+          <h3 class="center">Scholarship Grants</h3>
 
-          <p  id="initialization" class="section scrollspy">Content
-            <?php include 'lorem.php'; ?> </p>
+
+            <!-- <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s6"><a href="#test1">Test 1</a></li>
+                <li class="tab col s6"><a class="" href="#test2">Test 2</a></li>
+              </ul>
+            </div>
+            <div id="test1" class="col s12">
+              <div class="row">
+                <div class="col s6">
+                  <div class="container">
+                    <img src="images/legarda.jpg" alt="">
+
+                  </div>
+                </div>
+                <div class="col s6">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col s12">
+                        <h3>Loren Legarda</h3>
+                        <p>Senator</p>
+                      </div>
+                      <div class="col s12">
+                        <p>Lorna Regina Bautista Legarda is a Filipino environmentalist, cultural worker,
+                           journalist, and politician, notable as the only female to top two senatorial
+                           elections — 1998 and 2007. She has lineage from Antique province and Rizal province. 
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div id="test2" class="col s12">
+              <div class="row">
+                <div class="col s6">
+                  <div class="container">
+                    <img src="images/cadiao.jpg" alt="">
+                  </div>
+                </div>
+                <div class="col s6">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col s12">
+                        <h3>Rhodora Cadiao</h3>
+                        <p>Governor</p>
+                      </div>
+                      <div class="col s12">
+                        <p>Lorna Regina Bautista Legarda is a Filipino environmentalist, cultural worker,
+                           journalist, and politician, notable as the only female to top two senatorial
+                           elections — 1998 and 2007. She has lineage from Antique province and Rizal province. 
+                        </p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div> -->
+            <!-- carosel -->
+            <div class="row">
+
+
+            <div class="carousel carousel-slider center">
+              <div class="carousel-fixed-item center">
+                <!-- <a class="btn waves-effect white grey-text darken-text-2">button</a> -->
+              </div>
+              <div class="carousel-item" href="#one!">
+                <div class="row">
+                  <div class="col s6">
+                    <div class="container">
+                      <img src="images/legarda.jpg" width="600xp" height="600px" alt="">
+
+                    </div>
+                  </div>
+                  <div class="col s6">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col s12">
+                          <h3>Loren Legarda</h3>
+                          <p>Senator</p>
+                        </div>
+                        <div class="col s12">
+                          <p>Lorna Regina Bautista Legarda is a Filipino environmentalist, cultural worker,
+                             journalist, and politician, notable as the only female to top two senatorial
+                             elections — 1998 and 2007. She has lineage from Antique province and Rizal province. 
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                    <p  id="grant" class="section scrollspy">
+              <div class="carousel-item" href="#two!">
+                <div class="row">
+                  <div class="col s6">
+                    <div class="container">
+                      <img src="images/cadiao.jpg" width="600xp" height="600px" alt="">
+                    </div>
+                  </div>
+                  <div class="col s6">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col s12">
+                          <h3>Rhodora Cadiao</h3>
+                          <p>Governor</p>
+                        </div>
+                        <div class="col s12">
+                          <p>Lorna Regina Bautista Legarda is a Filipino environmentalist, cultural worker,
+                             journalist, and politician, notable as the only female to top two senatorial
+                             elections — 1998 and 2007. She has lineage from Antique province and Rizal province. 
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </div>
+
+          </p>
         </div>
       </div>
     </div>

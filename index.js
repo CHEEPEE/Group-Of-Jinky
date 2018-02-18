@@ -1,5 +1,12 @@
 
 
+$('.carousel.carousel-slider').carousel({
+   fullWidth: true,
+   indicators: true
+ });
+  $(document).ready(function(){
+    $('.tabs').tabs();
+  });
 
 
   $(document).ready(function(){
@@ -12,8 +19,6 @@
  	  $('.modal').modal();
 	  $(".dropdown-trigger").dropdown().open();
     $('.tooltipped').tooltip();
-
-
   });
 
 

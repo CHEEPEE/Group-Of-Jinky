@@ -41,10 +41,11 @@
               # code...
             }if ($row['role']=='sub-admin') {
                 $sys =   $_SESSION['sys'];
-                header("location:sub-admin-scholar.php?q=&sys=".$sys);
                 $_SESSION['schoolhandle'] = $row['school_handled'];
                 $_SESSION['login_user'] = $myusername;
                 $_SESSION['user_id'] = $row['id'];
+                $_SESSION['search_item']=null;
+                header("location:sub-admin-scholar.php?q=&sys=".$sys);
               # code...
             }
         }
