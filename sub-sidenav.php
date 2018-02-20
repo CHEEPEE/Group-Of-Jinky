@@ -32,13 +32,13 @@ $provider_result = $conn->query($sql);
           <a href="sub-announcements.php" class="collapsible-header white-text">Announcements<i class="material-icons announcement  icon white-text"></i></a>
         </li>
         <li>
-          <a class="collapsible-header white-text modal-trigger" href="#modal1">Reset Student Password<i class="material-icons undo icon white-text"></i></a>
+          <a class="collapsible-header white-text modal-trigger" href="#reset-student-modal">Reset Student Password<i class="material-icons undo icon white-text"></i></a>
         </li>
       </ul>
     </li>
   </ul>
 
-  <div id="modal1" class="modal">
+  <div id="reset-student-modal" class="modal">
   <div class="modal-content">
     <div class="col s6">
       <h5>Reset Student Password</h5>

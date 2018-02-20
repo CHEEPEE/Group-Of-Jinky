@@ -181,7 +181,7 @@ if ($provider_name_result->num_rows>0) {
               <h5>Add New Scholar</h5>
               <div class="card-action">
                 <div class="row">
-                   <form class="col s12" method="post" action="scholar_insert.php?sysid=<?php echo $sys;?>">
+                   <form class="col s12" method="post" action="sub-scholar_insert.php?sysid=<?php echo $sys;?>">
                   <div class="row">
                     <div class="input-field col s2">
                       <input id="student-number" name="student-number" type="text" class="validate">
