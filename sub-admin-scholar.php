@@ -310,7 +310,7 @@ if ($provider_name_result->num_rows>0) {
                           </a>
                         </div>
                         <div class='col s1'>
-                          <a href = 'scholar_delete.php?q=".$row['student_number']."&sys=".$sys."'>
+                          <a href = 'sub-scholar_delete.php?q=".$row['student_number']."&sys=".$sys."'>
                             <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
                           </a>
                         </div>

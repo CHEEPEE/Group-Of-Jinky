@@ -48,7 +48,7 @@
 	height: 300px;
 }
 .sections-custom{
-x
+	min-height: 100vh;
 }
 .newsfeedcard{
 	margin-top: 10px;
@@ -95,4 +95,16 @@ x
 }
 .section-two-about-contact{
 	padding-top: 20px;
+}
+
+.input-message-bar{
+	width: 100%;
+	position: fixed;
+	margin-top: 80vh;
+	margin-left: 25px;
+
+}
+.chat-list{
+	margin-left: 25px;
+	margin-bottom: 35px;
 }

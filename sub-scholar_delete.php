@@ -18,14 +18,12 @@ if ($conn->query($sql) === TRUE) {
 	$provider = $_SESSION['provider'];
 	 $user =   $_SESSION['login_user'];
 	 $timestamp = getTimeStamp();
-
-
 	 $header = "$user Deleted ". $studentName;
 	 $details = "$user Deleted Student Number: ".$student_number . "Student Name: $studentName";
 	 $insertLog = "INSERT into history_logs (timestamp,header,details) VALUES ('$timestamp','$header','$details')";
 	 if ($conn->query($insertLog)===TRUE) {
 	   # code...
-		 $location = 'location:admin-scholar.php?q='.$provider.'&sys='.$sysid;
+		 $location = 'location:sub-admin-scholar.php?q='.$provider.'&sys='.$sysid;
 		 header($location);
 	 }
 } else {

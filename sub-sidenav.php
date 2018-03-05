@@ -36,6 +36,9 @@ $provider_result = $conn->query($sql);
         </li>
       </ul>
     </li>
+    <li>
+          <a href="sub-history_logs.php" class="collapsible-header white-text">history<i class="material-icons  white-text">history</i></a>
+    </li>
   </ul>
 
   <div id="reset-student-modal" class="modal">

@@ -1,6 +1,7 @@
 <?php
 include 'dbconnect.php';
 include 'sessions.php';
+include 'functions.php';
 
 $firstname =$_POST['firstname'];
 $lastname = $_POST['last_name'];
@@ -34,28 +35,18 @@ echo $provider;
 if ($conn->query($sql) === TRUE) {
  $_SESSION['update_studentn_number'] = "";
  $_SESSION['error'] = 'Updated successfully';
- header("location:admin-scholar.php?q=$provider_session&sys=$sysid");
+ $user =   $_SESSION['login_user'];
+ $timestamp = getTimeStamp();
+ $header = "$user Updated ".$firstname." ".$lastname;
+ $details = "Student Number: $studentNumber First Name: $firstname Last Name: $lastname School: $school Course: $course Year Level: $yearlevel Municipality: $municipality Status: $status Scholarsip Provider: $provider requirement Status: $requirements_status";
+ $insertLog = "INSERT into history_logs (timestamp,header,details) VALUES ('$timestamp','$header','$details')";
 
+ if ($conn->query($insertLog)===TRUE) {
+   # code...
+    header("location:admin-scholar.php?q=$provider_session&sys=$sysid");
+ }
 } else {
    echo "Error updating record: " . $conn->error;
     $_SESSION['error'] = 'successfully';
 }
-
-
-
 ?>
-
-<!--  <ul class="collapsible">
-   <li>
-     <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-     <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-   </li>
-   <li>
-     <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-     <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-   </li>
-   <li>
-     <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-     <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-   </li>
- </ul> -->

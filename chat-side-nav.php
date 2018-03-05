@@ -6,7 +6,7 @@ $provider_result = $conn->query($sql);
   <ul id="slide-out" class="sidenav blue sidenav-fixed custom-side-nav">
     <li class="no-padding">
       <ul class="collapsible collapsible-accordion">
-        <li>
+        <!-- <li>
           <a class="collapsible-header white-text">Scholars<i class="material-icons users icon white-text"></i></a>
           <div class="collapsible-body">
             <ul class="blue darken-2">
@@ -23,10 +23,26 @@ $provider_result = $conn->query($sql);
               ?>
             </ul>
           </div>
+        </li> -->
+
+        <li>
+          <a href="announcements.php" class="collapsible-header white-text">Home<i class="material-icons white-text">arrow_back</i></a>
         </li>
+        <?php
+        $registerdStudentListSql = "SELECT * FROM users WHERE role = 'student'";
+        $regStudentsResult = $conn->query($registerdStudentListSql);
+        if ($regStudentsResult->num_rows>0) {
+          # code...
+          while ($reg_rows = $regStudentsResult->fetch_assoc()) {
+            $student_id = $reg_rows['username'];
+            # code...
+            echo "<li><a href = '#' class='collapsible-header white-text'>".getUserName($student_id)."<i class='material-icons white-text'></i></a> </li>";
+          }
+        }
+        ?>
       </ul>
     </li>
-     <li class="no-padding">
+     <!-- <li class="no-padding">
       <ul class="collapsible collapsible-accordion">
         <li>
           <a href="announcements.php" class="collapsible-header white-text">Announcements<i class="material-icons announcement  icon white-text"></i></a>
@@ -41,5 +57,5 @@ $provider_result = $conn->query($sql);
               <a href="history_logs.php" class="collapsible-header white-text">history<i class="material-icons  white-text">history</i></a>
         </li>
       </ul>
-    </li>
+    </li> -->
   </ul>

@@ -70,10 +70,7 @@ if ($provider_name_result->num_rows>0) {
 
   ?>
   </div>
-
-
    <div class="row fullheight main-content">
-
     <?php include 'sidenav.php';?>
     <div class="col s12 fullheight ">
       <div class="row">
@@ -87,7 +84,6 @@ if ($provider_name_result->num_rows>0) {
           </div>
         </nav>
       </div>
-
         <div class="card listcontainer">
              <div class="row list-title-scholars">
               <div class="col s1 red-text lighten-2 center ">
