@@ -38,7 +38,7 @@
 
             <div class="row">
               <div class="col s6">
-                  <a class="btn blue lighten-2 modal-trigger" href="#add-sub-admin-modal">Add Sub-admin</a>
+                  <a class="btn blue darken-2 modal-trigger" href="#add-sub-admin-modal">Add Sub-admin</a>
               </div>
 
             </div>
@@ -47,7 +47,7 @@
                 <ul class="collapsible">
                   <li>
                     <div class='collapsible-header'>
-                      <div class='col s12 blue-text text-lighten-2'>Sub-Admins</div>
+                      <div class='col s12 blue-text text-darken-2'>Sub-Admins</div>
                     </div>
                   </li>
                   <?php
@@ -81,19 +81,19 @@
                       echo "
                       <li>
                         <div class='collapsible-header'>
-                          <div class='col s4 blue-text text-lighten-2' id='subadmin$id'>".$row['username']."</div>
-                          <div class='col s6 blue-text text-lighten-2' id='schooladmin$id'>".$schoolname."</div>
+                          <div class='col s4 blue-text text-darken-2' id='subadmin$id'>".$row['username']."</div>
+                          <div class='col s6 blue-text text-darken-2' id='schooladmin$id'>".$schoolname."</div>
                             <div class='col s1'>
-                                <i class='material-icons small blue-text modal-trigger' href='#edit-sub-admin-modal' onclick='editSubAdmin(".$row['id'].");'>edit</i>
+                                <i class='material-icons small blue-text text-darken-2 modal-trigger' href='#edit-sub-admin-modal' onclick='editSubAdmin(".$row['id'].");'>edit</i>
                           </div>
                           <div class='col s1'>
                             <a href = 'provider-delete.php?q=". $row['id']. "'>
-                              <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
+                              <i class='material-icons small red-text text-darken-2'>delete_forever</i>
                             </a>
                           </div>
                           <div class='col s1'>
                             <a class='tooltipped' data-position='bottom' data-delay='50' data-tooltip='Reset Password' href = 'sub-admin-reset-password.php?q=". $row['id']. "'>
-                              <i class='material-icons small teal-text text-lighten-2'>settings_backup_restore</i>
+                              <i class='material-icons small teal-text text-darken-2'>settings_backup_restore</i>
                             </a>
                           </div>
                         </div>
@@ -139,7 +139,7 @@
                       <label for="confirm_new_password">Confirm New Password</label>
                     </div>
                     <div class="col s12">
-                      <input id='submit-btn' class="btn blue lighten-2" type="submit" name="Submit" >
+                      <input id='submit-btn' class="btn blue darken-2" type="submit" name="Submit" value="Save" >
                     </div>
                   </div>
                 </div>
@@ -168,7 +168,7 @@
                   <ul class="collapsible">
                     <li>
                       <div class='collapsible-header'>
-                        <div class='col s12 blue-text text-lighten-2'>Scholar Names</div>
+                        <div class='col s12 blue-text text-darken-2'>Scholar Names</div>
                       </div>
                     </li>
                     <?php
@@ -183,13 +183,13 @@
                         echo "
                         <li>
                           <div class='collapsible-header'>
-                            <div class='col s10 blue-text text-lighten-2' id='edit$id'>".$row['school_list']."</div>
+                            <div class='col s10 blue-text text-darken-2' id='edit$id'>".$row['school_list']."</div>
                               <div class='col s1'>
                                   <i class='material-icons small blue-text modal-trigger' href='#edit-school-modal' onclick='editSchool(".$row['id'].");'>edit</i>
                               </div>
                             <div class='col s1'>
                               <a href = 'school-delete.php?q=". $row['id']."'>
-                                <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
+                                <i class='material-icons small red-text text-darken-2'>delete_forever</i>
                               </a>
                             </div>
                           </div>
@@ -208,7 +208,7 @@
               </div>
             </div>
             <div class="col s12">
-              <a href="#add-school-modal" class="btn blue lighten-2 modal-trigger">Add School</a>
+              <a href="#add-school-modal" class="btn blue darken-2 modal-trigger">Add School</a>
             </div>
           </div>
         </div>
@@ -220,7 +220,7 @@
               <div class="input-field col s10">
                 <input id="student-number" name="student-number" type="text" class="validate"  onkeyup='check();'>
                 <label for="student-number">Student Number</label>
-                <input id='submit-btn' class="btn blue lighten-2" type="submit" name="Submit" value="Reset Password" >
+                <input id='submit-btn' class="btn blue darken-2" type="submit" name="Submit" value="Reset Password" >
               </div>
 
 
@@ -236,7 +236,7 @@
           <h5>School Year And Semester</h5>
           <div class="row">
             <div class="col s12">
-                <a class="btn blue lighten-2 modal-trigger" href="#schoolyear-semester-modal">Add School Year And Semester</a>
+                <a class="btn blue darken-2 modal-trigger" href="#schoolyear-semester-modal">Add School Year And Semester</a>
             </div>
             <div class="col s12">
               <!-- school Year List -->
@@ -245,7 +245,7 @@
                   <ul class="collapsible">
                     <li>
                       <div class='collapsible-header'>
-                        <div class='col s12 blue-text text-lighten-2'>School Year And Semester</div>
+                        <div class='col s12 blue-text text-darken-2'>School Year And Semester</div>
                       </div>
                     </li>
                     <?php
@@ -260,7 +260,7 @@
                         echo "
                         <li>
                           <div class='collapsible-header'>
-                            <div class='col s10 blue-text text-lighten-2' id='yearsem$id'>".$row['school_year_sem']."</div>
+                            <div class='col s10 blue-text text-darken-2' id='yearsem$id'>".$row['school_year_sem']."</div>
                               <div class='col s1'>
                                   <i class='material-icons small blue-text modal-trigger' href='#edit-yearsem-modal' onclick='editSchoolYearSem(".$row['id'].");'>edit</i>
                               </div>
@@ -311,7 +311,7 @@
                   $provider_result = $conn->query($sqlgetProvider);
                     if ($provider_result->num_rows>0) {
                       # code...
-                      
+
                     echo "<option id='defaultprovider' value='' selected></option>";
                       while ($row = $provider_result->fetch_assoc()) {
                         # code...

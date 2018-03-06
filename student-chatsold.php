@@ -23,7 +23,7 @@ if ($_REQUEST['id']=='') {
   <?php include 'navbar.php';?>
   </div>
    <div class="row fullheight main-content">
-    <?php include 'chat-side-nav.php';?>
+    <?php include 'student-chat-side-nav.php';?>
     <div class="col s11 fullheight">
       <!-- chat list -->
       <div class="row">
@@ -50,17 +50,13 @@ if ($_REQUEST['id']=='') {
 
   <script type="text/javascript">
     var user_id = <?php echo $_SESSION['user_id']; ?>;
-    $(document).ready(function(){
-      $(document).scrollTop($(document).height());
-   });
-
-
+   $(document).ready(function(){
 
      function fetch_data()
         {
           $.ajax({
              type: "Post",
-             url: "fetch_chat.php",
+             url: "student-fetch_chat.php",
              success: function(data) {
                     var obj = $.parseJSON(data);
                    var result =""
@@ -73,7 +69,6 @@ if ($_REQUEST['id']=='') {
                      });
                    result = result + ""
                    $("#chat-list").html(result);
-
              }
            });
         }
@@ -82,7 +77,6 @@ if ($_REQUEST['id']=='') {
           setInterval(function(){
          fetch_data();
        }, 1000);
-       });
 
 
 
@@ -92,7 +86,7 @@ if ($_REQUEST['id']=='') {
      {
 
       $.ajax({
-       url:"insert-chat.php",
+       url:"student-insert-chat.php",
        method:"POST",
        data:{message:getInputMessage.value},
        success:function(data)
@@ -101,9 +95,7 @@ if ($_REQUEST['id']=='') {
         // $('#user_data').DataTable().destroy();
         // fetch_data();
         getInputMessage.value = "";
-          fetch_data();
-        $(document).scrollTop($(document).height());
-
+        fetch_data();
        }
       });
       setInterval(function(){
@@ -115,7 +107,7 @@ if ($_REQUEST['id']=='') {
       alert("Both Fields is required");
      }
     });
-
+});
 
 
 

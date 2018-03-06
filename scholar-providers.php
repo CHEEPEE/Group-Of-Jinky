@@ -33,7 +33,7 @@
         <div class="card listcontainer">
 
              <div class="row list-title-scholars">
-              <div class="col s1 red-text lighten-2 center ">
+              <div class="col s1 red-text darken-2 center ">
 
                    <?php  echo $_SESSION['error'];?>
                    <?php $_SESSION['error'] ='';?>
@@ -43,7 +43,7 @@
                  <h5 class=" blue-text lighten-2">List of Scholars</h5>
               </div>
               <div class="col s1 right">
-                   <div class='chip teal white-text teal lighten-2'>
+                   <div class='chip teal white-text teal darken-2'>
                          Print
                   </div>
               </div>
@@ -52,7 +52,7 @@
           <div class="card-action">
               <div class="row">
                 <div class="input-field col s3">
-                   <a class="waves-effect waves-light btn modal-trigger blue" href="#modal1">Add Scholar Provider</a>
+                   <a class="waves-effect waves-light btn modal-trigger blue darken-2" href="#modal1">Add Scholar Provider</a>
                 </div>
               </div>
 
@@ -63,16 +63,12 @@
         <div class="row">
 
           <div class="col s12">
-            <div class='chip teal white-text teal lighten-2'>
-                Result :
-
-            </div>
 
 
           <ul class="collapsible">
             <li>
               <div class='collapsible-header'>
-                <div class='col s12 blue-text text-lighten-2'>Scholar Provider Names</div>
+                <div class='col s12 blue-text text-darken-2'>Scholar Provider Names</div>
               </div>
             </li>
             <?php
@@ -87,13 +83,13 @@
                 echo "
                 <li>
                   <div class='collapsible-header'>
-                    <div class='col s10 blue-text text-lighten-2' id='edit$id'>".$row['provider_name']."</div>
+                    <div class='col s10 blue-text text-darken-2' id='edit$id'>".$row['provider_name']."</div>
                       <div class='col s1'>
                           <i class='material-icons small blue-text modal-trigger' href='#edit-modal' onclick='editProviderid(".$row['provider_id'].");'>edit</i>
                       </div>
                     <div class='col s1'>
                       <a href = 'provider-delete.php?q=". $row['provider_id']. "'>
-                        <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
+                        <i class='material-icons small red-text text-darken-2'>delete_forever</i>
                       </a>
                     </div>
                   </div>

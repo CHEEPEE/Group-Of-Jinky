@@ -89,5 +89,21 @@
     }
   }
 
+  function getFirstRegisteredUser()
+  {
+    # code...
+    include 'dbconnect.php';
+
+    $sql = "SELECT * FROM users WHERE role = 'student' LIMIT 1;";
+    $result = $conn->query($sql);
+    if ($result->num_rows>0) {
+      # code...
+      while ($row = $result->fetch_assoc()) {
+        # code...
+        return $row['id'];
+      }
+    }
+  }
+
 
  ?>

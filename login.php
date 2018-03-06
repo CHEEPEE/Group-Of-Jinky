@@ -1,6 +1,67 @@
+   <?php
+   session_start();
+   $_SESSION['error']="";
+   $error = "";
+   $_SESSION['change_pass_error'] = "";
+
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+    include 'dbconnect.php';
+    $myusername = mysqli_real_escape_string($conn,$_POST['username']);
+    $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
+    $hashedPassword = md5($mypassword);
+
+    $yearsemsql="SELECT * FROM school_yeara_sem_list ORDER BY id DESC LIMIT 1;";
+    $sysResult = $conn->query($yearsemsql);
+    if ($sysResult->num_rows>0) {
+      # code...
+      while ($sysrow = $sysResult->fetch_assoc()) {
+        # code...
+        $_SESSION['sys']=$sysrow['id'];
+      }
+    }
+
+    $sql = "SELECT * FROM users WHERE username = '$myusername' AND password = '$hashedPassword'";
+    $result  = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            if ($row['role']=='student') {
+              # code...
+              header("location:student.php");
+              $_SESSION['login_user'] = $myusername;
+              $_SESSION['user_id'] = $row['id'];
+            }
+            if ($row['role']=='admin') {
+              $sys =   $_SESSION['sys'];
+              $_SESSION['login_user'] = $myusername;
+              $_SESSION['user_id'] = $row['id'];
+              $_SESSION['search_item']=null;
+                header("location:admin-scholar.php?q=&sys=".$sys);
+              # code...
+            }if ($row['role']=='sub-admin') {
+                $sys =   $_SESSION['sys'];
+                $_SESSION['schoolhandle'] = $row['school_handled'];
+                $_SESSION['login_user'] = $myusername;
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['search_item']=null;
+                header("location:sub-admin-scholar.php?q=&sys=".$sys);
+              # code...
+            }
+        }
+
+
+      # code...
+    }else {
+      # code...
+      echo "login Failed";
+    }
+
+
+}
+?>
 <!DOCTYPE>
 <html>
-
     <head>
            <!--Import Google Icon Font-->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
@@ -26,11 +87,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     </head>
-    <body class="container center">
+    <body class="container center grey lighten-4">
 
      <div class="row logincard">
         <div class="col l3 m2"></div>
-         <div class="col s12 l5 m8">
+         <div class="col s12 l6 m8">
         <div class="card center">
              <div class="container">
                <div class="row center">
@@ -54,18 +115,56 @@
 
                         </div>
                         <BUTTON class="waves-effect waves-light btn blue lighten-2" type="submit" name="Login"><input type="submit" name="login" value="Log In"></BUTTON>
+                        <div class="row signuplabel red-text text-lighten-2">
+                            <?php echo $error;?>
+                        </div>
+
                         <div class="row signuplabel">
                           <div class="col s12">
-                            Dont have account Yet?  <a href="#">  <div class='chip white-text blue lighten-2'> Sign Up </div></a>
+                            <div class="grey-text">
+                                Doesn't have account Yet?  <a href="#modal1" class="modal-trigger">  <div class='chip white-text  blue lighten-2'> Sign Up </div></a>
+                            </div>
                           </div>
-
                         </div>
                       </form>
+
                   </div>
+
              </div>
+
           </div>
+            <a href="homepage.php" class="">  <div class='chip white-text  blue lighten-2'> Homepage </div></a>
         </div>
         <div class="col l3 m2"></div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal col s4 offset-s2">
+
+          <div class="modal-content">
+            <h6 class="grey-text">Enter Student Number</h6>
+            <div class="card-action">
+              <div class="row">
+                <div class="col s4">
+
+                </div>
+                 <form class="col s12" method="post" action="scholar-new-or-old.php">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="student-number" name="student-number" type="text" class="validate">
+                    <label for="student-number">Student Number</label>
+                  </div>
+                 <div class="modal-content">
+                  <BUTTON class="waves-effect waves-light btn blue lighten-2" type="submit" name="save"><input type="submit" name="save" value="Proceed"></BUTTON>
+                 </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!--    END OF MODAL STRACTURE -->
+      <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+     <script type="text/javascript" src="index.js"></script>
+
      </div>
    </body>
 </html>

@@ -50,11 +50,7 @@ if ($_REQUEST['id']=='') {
 
   <script type="text/javascript">
     var user_id = <?php echo $_SESSION['user_id']; ?>;
-    $(document).ready(function(){
-      $(document).scrollTop($(document).height());
-   });
-
-
+   $(document).ready(function(){
 
      function fetch_data()
         {
@@ -65,24 +61,20 @@ if ($_REQUEST['id']=='') {
                     var obj = $.parseJSON(data);
                    var result =""
                    $.each(obj, function() {
-                      if (this['user_id']!=user_id) {
+                      if (this['user_id']==user_id) {
                         result+="<div class='row'><div class='custom-chip right teal white-text teal darken-2'>"+this['message']+"<br>"+this['chat_time']+"<br></div></div>";
                       }else {
                         result+="<div class='row'><div class='custom-chip left teal white-text teal darken-2'>"+this['message']+"<br>"+this['chat_time']+"<br></div></div>";
                       }
+
+
                      });
                    result = result + ""
                    $("#chat-list").html(result);
-
              }
            });
         }
         fetch_data();
-        $(document).ready(function(){
-          setInterval(function(){
-         fetch_data();
-       }, 1000);
-       });
 
 
 
@@ -102,8 +94,6 @@ if ($_REQUEST['id']=='') {
         // fetch_data();
         getInputMessage.value = "";
           fetch_data();
-        $(document).scrollTop($(document).height());
-
        }
       });
       setInterval(function(){
@@ -115,7 +105,7 @@ if ($_REQUEST['id']=='') {
       alert("Both Fields is required");
      }
     });
-
+});
 
 
 

@@ -50,11 +50,7 @@ if ($_REQUEST['id']=='') {
 
   <script type="text/javascript">
     var user_id = <?php echo $_SESSION['user_id']; ?>;
-    $(document).ready(function(){
-      $(document).scrollTop($(document).height());
-   });
-
-
+    var getInputMessage = document.getElementById('input-message');
 
      function fetch_data()
         {
@@ -64,7 +60,8 @@ if ($_REQUEST['id']=='') {
              success: function(data) {
                     var obj = $.parseJSON(data);
                    var result =""
-                   $.each(obj, function() {
+                   $.each(obj, function()
+                   {
                       if (this['user_id']!=user_id) {
                         result+="<div class='row'><div class='custom-chip right teal white-text teal darken-2'>"+this['message']+"<br>"+this['chat_time']+"<br></div></div>";
                       }else {
@@ -73,7 +70,7 @@ if ($_REQUEST['id']=='') {
                      });
                    result = result + ""
                    $("#chat-list").html(result);
-
+                   $(document).scrollTop($(document).height());
              }
            });
         }
@@ -82,12 +79,11 @@ if ($_REQUEST['id']=='') {
           setInterval(function(){
          fetch_data();
        }, 1000);
-       });
 
 
 
       $(document).on('click', '#send-btn', function(){
-      var getInputMessage = document.getElementById('input-message');
+
      if(getInputMessage.value != '')
      {
 
@@ -102,8 +98,7 @@ if ($_REQUEST['id']=='') {
         // fetch_data();
         getInputMessage.value = "";
           fetch_data();
-        $(document).scrollTop($(document).height());
-
+          var getInputMessage = document.getElementById('input-message');
        }
       });
       setInterval(function(){
@@ -115,13 +110,7 @@ if ($_REQUEST['id']=='') {
       alert("Both Fields is required");
      }
     });
-
-
-
-
-
-
-
+});
 
   </script>
  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

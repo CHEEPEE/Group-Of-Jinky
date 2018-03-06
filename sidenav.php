@@ -3,13 +3,13 @@
 $sql = "SELECT * FROM scholar_provider;";
 $provider_result = $conn->query($sql);
  ?>
-  <ul id="slide-out" class="sidenav blue sidenav-fixed custom-side-nav">
+  <ul id="slide-out" class="sidenav blue darken-3 sidenav-fixed custom-side-nav">
     <li class="no-padding">
       <ul class="collapsible collapsible-accordion">
         <li>
           <a class="collapsible-header white-text">Scholars<i class="material-icons users icon white-text"></i></a>
           <div class="collapsible-body">
-            <ul class="blue darken-2">
+            <ul class="blue darken-4">
               <?php
               $session_sys = $_SESSION['sys'];
                 if ($provider_result->num_rows>0) {
@@ -32,6 +32,9 @@ $provider_result = $conn->query($sql);
           <a href="announcements.php" class="collapsible-header white-text">Announcements<i class="material-icons announcement  icon white-text"></i></a>
         </li>
         <li>
+            <a href="files-management.php" class="collapsible-header white-text">Files<i class="material-icons  white-text">attach_file</i></a>
+        </li>
+        <li>
           <a href="admin-management.php" class="collapsible-header white-text">Management<i class="material-icons settings icon white-text"></i></a>
         </li>
         <li>
@@ -40,6 +43,7 @@ $provider_result = $conn->query($sql);
         <li>
               <a href="history_logs.php" class="collapsible-header white-text">history<i class="material-icons  white-text">history</i></a>
         </li>
+
       </ul>
     </li>
   </ul>

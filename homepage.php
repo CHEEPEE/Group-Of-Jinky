@@ -31,9 +31,8 @@
                 <ul class="right hide-on-med-and-down">
                   <li><a href="#introduction">Home</a></li>
                   <li><a href="announcements-page.php">Anouncements</a></li>
-                  <li><a href="#about">About</a></li>
-                  <li><a href="#grant">Grant</a></li>
-                  <li><a href="index.php">Sign In</a></li>
+                  <li><a href="documents-page.php">Documents</a></li>
+                  <li><a href="login.php">Sign In</a></li>
                 </ul>
               </div>
             </nav>

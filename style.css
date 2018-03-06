@@ -100,11 +100,20 @@
 .input-message-bar{
 	width: 100%;
 	position: fixed;
-	margin-top: 80vh;
-	margin-left: 25px;
+	margin-top: 85vh;
+	padding-left: 25px;
 
 }
 .chat-list{
+	padding-top: 20px;
+	padding-bottom: 45px;
 	margin-left: 25px;
-	margin-bottom: 35px;
+}
+.custom-chip{
+	border-radius: 10px;
+	border: 1px solid white;
+	margin: 5px;
+	padding: 10px;
+
+
 }

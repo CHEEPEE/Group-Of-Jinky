@@ -27,7 +27,7 @@
 
 		      <a href="#!" class="brand-logo blue-text "><i class=" medium material-icons blue-text  ">insert_emoticon</i><?php echo $user_fullname;?></a>
 		      <ul class="right hide-on-med-and-down">
-		        <li><a href="#!" class="blue-text"><i class="material-icons blue-text comments icon left"></i>Chat</a></li>
+		        <li><a href="student-chats.php?id=" class="blue-text"><i class="material-icons blue-text comments icon left"></i>Chat</a></li>
 		      	<li><a class="dropdown-trigger blue-text" href="#!" data-target="dropdown1"><i class="material-icons  user circle outline icon blue-text left"></i></a></li>
 		      </ul>
 		    </div>

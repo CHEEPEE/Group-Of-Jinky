@@ -29,7 +29,7 @@ $provider_result = $conn->query($sql);
           <a href="announcements.php" class="collapsible-header white-text">Home<i class="material-icons white-text">arrow_back</i></a>
         </li>
         <?php
-        $registerdStudentListSql = "SELECT * FROM users WHERE role = 'student'";
+        $registerdStudentListSql = "SELECT * FROM users WHERE role LIKE '%admin'";
         $regStudentsResult = $conn->query($registerdStudentListSql);
         if ($regStudentsResult->num_rows>0) {
           # code...
@@ -37,7 +37,7 @@ $provider_result = $conn->query($sql);
             $student_id = $reg_rows['username'];
             $usr_id =  $reg_rows['id'];
             # code...
-            echo "<li><a href = 'chats.php?id=$usr_id' class='collapsible-header white-text'>".getUserName($student_id)."<i class='material-icons white-text'></i></a> </li>";
+            echo "<li><a href = 'student-chats.php?id=$usr_id' class='collapsible-header white-text'>".$student_id."<i class='material-icons white-text'></i></a> </li>";
           }
         }
         ?>

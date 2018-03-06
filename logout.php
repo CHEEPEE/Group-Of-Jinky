@@ -1,3 +1,3 @@
-<?php header('location:index.php'); 
+<?php header('location:login.php');
 session_destroy();
 ?>

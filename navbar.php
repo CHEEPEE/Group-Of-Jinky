@@ -1,7 +1,7 @@
 <ul id="dropdown1" class="dropdown-content">
 
 	  <li class="divider"></li>
-	  <li><a href="#!" class="blue-text">User Profile<i class="material-icons  user circle outline icon blue-text left"></i></a></li>
+	  <!-- <li><a href="admin-management.php" class="blue-text">Management<i class="material-icons  user circle outline icon blue-text left"></i></a></li> -->
 	   <li class="divider"></li>
 	  <li><a href="logout.php" class="blue-text">Log out<i class="material-icons sign out icon blue-text left"></i></a></li>
 	</ul>
@@ -14,8 +14,8 @@
 
 		      <ul class="right hide-on-med-and-down">
 
-		        <li><a href="chats.php" class="blue-text"><i class="material-icons blue-text comments icon left"></i>Chat</a></li>
-		      	<li><a class="dropdown-trigger blue-text" href="#!" data-target="dropdown1"><?php echo $_SESSION['login_user'];?><i class="material-icons  user circle outline icon blue-text left"></i></a></li>
+		        <li><a href="chats.php?id=" class="blue-text"><i class="material-icons blue-text comments icon left"></i>Chat</a></li>
+		      	<li><a class="dropdown-trigger blue-text" href="#!" data-target="dropdown1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $_SESSION['login_user'];?><i class="material-icons  user circle outline icon blue-text left"></i></a></li>
 		      </ul>
 		    </div>
 		  </nav>

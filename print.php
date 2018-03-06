@@ -8,30 +8,12 @@
   include 'styles.php';
   include 'dbconnect.php';
   include 'sessions.php';
-  $_SESSION['provider'] =  $_REQUEST["q"];
   $student_number = "";
   $search = $_SESSION['search_item'];
   $array_search = explode(" ",$search);
-  $provider = $_REQUEST["q"];
+  $provider = $_SESSION['provider'];
   $schoolyearSemId = '';
   $sys =  $_REQUEST['sys'];
-  if ($provider == null) {
-    # code...
-    $firtsProvider = "SELECT * FROM scholar_provider LIMIT 1";
-
-    $firstProviderResult = $conn->query($firtsProvider);
-    if ($firstProviderResult->num_rows>0) {
-      # code...
-      while ($row = $firstProviderResult->fetch_assoc()) {
-        # code...
-        $provider = $row['provider_id'];
-        $_SESSION['provider'] =$row['provider_id'];
-      }
-    }
-  }else {
-    # code...
-      $_SESSION['provider'] = $_REQUEST["q"];
-  }
 
     # code...
     $sql = "SELECT * FROM student_list_scholars WHERE scholar_provider = '$provider' AND school_year_sem =$sys ";
@@ -66,25 +48,27 @@ if ($provider_name_result->num_rows>0) {
 
 <body class=" fullheight">
   <!-- Dropdown Structure -->
-  <?php include 'navbar.php';
+  <ul id="dropdown1" class="dropdown-content">
 
-  ?>
+  	  <li class="divider"></li>
+  	  <!-- <li><a href="admin-management.php" class="blue-text">Management<i class="material-icons  user circle outline icon blue-text left"></i></a></li> -->
+  	   <li class="divider"></li>
+  	  <li><a href="logout.php" class="blue-text">Log out<i class="material-icons sign out icon blue-text left"></i></a></li>
+  	</ul>
+  	<div class="navbar-fixed ">
+  		<nav>
+  		    <div class="nav-wrapper fixed companylogo white blue-text" >
+  		      <a href="admin-scholar.php?q=&sys=<?php echo $sys;?>" class="brand-logo blue-text "><i class=" large material-icons blue-text  ">insert_emoticon</i>Back</a>
+  		    </div>
+  		  </nav>
+  	</div>
   </div>
-   <div class="row fullheight main-content">
-    <?php include 'sidenav.php';?>
+   <div class="row fullheight">
+
     <div class="col s12 fullheight ">
       <div class="row">
-         <nav class="listcontainer">
-          <div class="nav-wrapper blue darken-2">
-            <div class="col s12">
-              <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
-              <a href="#!" class="breadcrumb">Scholars</a>
-              <a href="#!" class="breadcrumb"><?php echo $provider_name;?></a>
-            </div>
-          </div>
-        </nav>
       </div>
-        <div class="card listcontainer">
+        <div class="card listcontainer" id="">
              <div class="row list-title-scholars">
               <div class="col s1 red-text lighten-2 center ">
 
@@ -94,11 +78,18 @@ if ($provider_name_result->num_rows>0) {
 
               </div>
               <div class="col s4 ">
-                 <h5 class=" blue-text lighten-2">List of Scholars</h5>
+                     <form method="post" action="printsearchthis.php?sys=<?php echo $sys;?>">
+                         <div class="col s12">
+                           <label for="search">Search</label>
+                           <input id="search" type="text" name="search" class="validate">
+                         </div>
+                         <div class="col s4">
+                           <input type="submit" class="btn blue darken-2 white-text" value="Search">
+                         </div>
+                     </form>
               </div>
               <div class="col s6">
                 <form class="" method="post" action ="get-school-year-sem.php">
-
                   <div class="input-field col s6">
                     <select name="sys">
                       <?php
@@ -131,34 +122,14 @@ if ($provider_name_result->num_rows>0) {
             </div>
 
 
-              <div class="col s1 right">
-                   <div class='chip teal white-text teal lighten-2'>
-                      <a class="white-text" href="print.php?sys=<?php echo $sys; ?>" > Print</a>
-                    </div>
+              <div class="col s2 right">
+                        <input type="submit" class="btn white-text" name="" value="Print now" onclick="printDiv('print')">
               </div>
 
             </div>
-          <div class="card-action">
-              <div class="row">
-                <div class="input-field col s3">
-                   <a class="waves-effect waves-light btn modal-trigger blue  darken-2" href="#modal1">Add Scholar</a>
-                </div>
-                <div class="input-field col s3 offset-s5">
-                  <form method="post" action="searchthis.php?sys=<?php echo $sys;?>">
-                    <div class="$row">
-                      <div class="col s12">
-                        <label for="search">Search</label>
-                        <input id="search" type="text" name="search" class="validate">
-                      </div>
-                      <div class="col s4">
-                        <input type="submit" class="btn blue darken-2 white-text" value="Search">
-                      </div>
-                    </div>
-                  </form>
+          <div class="card-action" id = 'print'>
 
-                </div>
-              </div>
-
+           <h5 class=" blue-text lighten-2">List of Scholars</h5>
           <!-- Modal Structure -->
           <div id="modal1" class="modal">
             <div class="modal-content">
@@ -206,8 +177,6 @@ if ($provider_name_result->num_rows>0) {
                             }
                           }
                         ?>
-
-
                    </select>
                    <label>School</label>
                    </div>
@@ -252,27 +221,35 @@ if ($provider_name_result->num_rows>0) {
           <ul class="collapsible">
             <li>
               <div class='collapsible-header'>
-                <div class='col s4 blue-text text-darken-2  '>Student Name</h6>
+                <div class='col s2 blue-text text-darken-2  '>Student Name</h6>
                 </div>
-                <div class='col s3 teal-text '>
+                <div class='col s1 teal-text '>
                   Student Number
                 </div>
 
-                <div class='col s2 teal-text'>
-
+                <div class='col s1 teal-text'>
                     Scholarship Status
-
-
                 </div>
-                <div class='col s3 teal-text'>
-
+                <div class='col s1 teal-text'>
                   Requirements Status
-
+                </div>
+                <div class='col s1'>
+                  Municipality
+                </div>
+                <div class='col s2'>
+                  School
+                </div>
+                <div class='col s2'>
+                  Course
+                </div>
+                <div class='col s1'>
+                  Year Level
+                </div>
+                <div class='col s1'>
 
                 </div>
-                <div class='col s3'>
 
-                </div>
+
 
               </div>
 
@@ -287,63 +264,32 @@ if ($provider_name_result->num_rows>0) {
                     echo "
                     <li>
                       <div class='collapsible-header'>
-                        <div class='col s4 blue-text text-darken-2  '>".$row['last_name']." ".$row['first_name']. ", ".$row['middle_name']. "</h6>
+                        <div class='col s2 blue-text text-darken-2 '>".$row['last_name']." ".$row['first_name']. ", ".$row['middle_name']. "</h6>
                         </div>
-                        <div class='col s3'>
-                        <div class='chip teal white-text teal darken-2'>
+                        <div class='col s1'>
+
                            ".$row['student_number']."
                         </div>
-
-                        </div>
-
-                        <div class='col s2'>
-                        <div class='chip teal white-text teal darken-2'>
+                        <div class='col s1'>
                            ".$row['status']."
                         </div>
-
-                        </div>
-                        <div class='col s3'>
-                        <div class='chip teal white-text teal darken-2'>
+                        <div class='col s1'>
                            ".$row['requirements_status']."
                         </div>
-
+                        <div class='col s1'>
+                           ".$row['municipality']."
+                        </div>
+                        <div class='col s2'>
+                           ".$row['school']."
+                        </div>
+                        <div class='col s2'>
+                           ".$row['course']."
                         </div>
                         <div class='col s1'>
-                          <a href = 'admin-edit-scholar.php?q=". $row['student_number']. "&sys=".$sys."'>
-                            <i class='material-icons small blue-text'>edit</i>
-                          </a>
+                           ".$row['year_level']."
                         </div>
                         <div class='col s1'>
-                          <a href = 'scholar_delete.php?q=".$row['student_number']."&sys=".$sys."'>
-                            <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
-                          </a>
                         </div>
-                        <div class='col s1'>
-                          <i class='material-icons small blue-text comments outline'>chat</i>
-                        </div>
-                      </div>
-                      <div class='collapsible-body'>
-                       <div class ='row'>
-                       <table class ='striped'>
-                        <thead>
-                          <tr>
-                              <th class='teal-text text-lighten-2'>Municipality</th>
-                              <th class='teal-text text-lighten-2'>School</th>
-                              <th class='teal-text text-lighten-2'>Course</th>
-                              <th class='teal-text text-lighten-2'>Year Level</th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <tr>
-                            <td>".$row['municipality']."</td>
-                            <td>".$row['school']."</td>
-                            <td>".$row['course']."</td>
-                            <td>".$row['year_level']."</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                       </div>
                       </div>
                     </li>";
                   }
@@ -355,14 +301,23 @@ if ($provider_name_result->num_rows>0) {
             </ul>
           </div>
         </div>
-         </div>
+       </div>
       </div>
     </div>
 
      <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 
      <script type="text/javascript">
+     function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
 
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
 
      </script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

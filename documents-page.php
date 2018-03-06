@@ -19,7 +19,7 @@
   		      <ul class="right hide-on-med-and-down blue lighten-1">
               <li><a href="Homepage.php">Home</a></li>
               <li><a href="announcements-page.php">Anouncements</a></li>
-                <li><a href="documents-page.php">Documents</a></li>
+              <li><a href="documents-page.php">Documents</a></li>
               <li><a href="index.php">Sign In</a></li>
   		      </ul>
   		    </div>
@@ -28,7 +28,7 @@
     <div class="row grey lighten-4">
       <div class="class col s9">
           <?php
-          $sql = "SELECT * FROM announcements ORDER BY id DESC";
+          $sql = "SELECT * FROM files ORDER BY file_id DESC";
 
 
           $update = "";
@@ -38,19 +38,21 @@
           if ($result->num_rows > 0) {
               // output data of each row
               while($row = $result->fetch_assoc()) {
-                $title = $row['title'];
-                $message = $row['message'];
-                $id = $row['id'];
-                $subject = $row['subject'];
-                $timestamp = $row['timestamp'];
-                $time =$row['hour'];
+                $title = $row['file_title'];
+                $message = $row['file_body'];
+                $id = $row['file_id'];
+                $file_name = $row['file_name'];
+                $subject = "";
+                $timestamp = $row['time'];
+                $file_directory = $row['file_directory'];
+                $time ="";
 
               echo "
               <div class = 'newsfeedcard white'>
               <h3 >$title</h3>
               <div class = 'row'>
                 <div class='col s6 grey-text'>
-                  To : $subject
+                  Download : <div class='chip white-text blue lighten-2'> <a class = 'white-text' href = '$file_directory'>$file_name</a></div>
                 </div>
                 <div class = 'col s6 right'>
                    <div class='chip white-text blue lighten-2'>
@@ -77,15 +79,15 @@
               <ul class="section table-of-contents">
 
             <?php
-            $sql = "SELECT * FROM announcements ORDER BY id DESC";
+            $sql = "SELECT * FROM files ORDER BY file_id DESC";
             $update = "";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                  $title = $row['title'];
-                  $message = $row['message'];
-                    $id = $row['id'];
+                  $title = $row['file_title'];
+                  $message = $row['file_body'];
+                    $id = $row['file_id'];
                 echo "
 
                 <li><a href = '#news$id'>$title</a></li>
