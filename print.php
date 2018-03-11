@@ -131,80 +131,7 @@ if ($provider_name_result->num_rows>0) {
 
            <h5 class=" blue-text lighten-2">List of Scholars</h5>
           <!-- Modal Structure -->
-          <div id="modal1" class="modal">
-            <div class="modal-content">
-              <h5>Add New Scholar</h5>
-              <div class="card-action">
-                <div class="row">
-                   <form class="col s12" method="post" action="scholar_insert.php?sysid=<?php echo $sys;?>">
-                  <div class="row">
-                    <div class="input-field col s2">
-                      <input id="student-number" name="student-number" type="text" class="validate">
-                      <label for="student-number">Student Number</label>
-                    </div>
-                     <div class="input-field col s4">
-                      <input id="firstname" name="firstname" type="text" class="validate">
-                      <label for="firstname">First Name</label>
-                    </div>
-                    <div class="input-field col s4">
-                      <input id="last_name" name="last_name" type="text" class="validate">
-                      <label for="last_name">Last Name</label>
-                    </div>
-                     <div class="input-field col s2">
-                      <input id="middle_name" name="middlename" type="text" class="validate">
-                      <label for="middle_name">Middle Name</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <!-- <div class="input-field col s3">
-                      <input id="school" name="school" type="text" class="validate">
-                      <label for="school">School</label>
-                    </div> -->
-                    <div class="input-field col s4">
-                      <select name="school">
-                        <?php
-                        $sqlgetProvider = "SELECT * FROM school_list;";
-                        $provider_result = $conn->query($sqlgetProvider);
-                          if ($provider_result->num_rows>0) {
-                            # code...
-                          echo "<option id='defaultprovider' value='' selected></option>";
-                            while ($row = $provider_result->fetch_assoc()) {
-                              # code...
-                               $value = $row['school_list'];
-                               $id_value = $row['id'];
-                               echo "<option id='defaultprovider' value='$value'>$value</option>";
 
-                            }
-                          }
-                        ?>
-                   </select>
-                   <label>School</label>
-                   </div>
-                    <div class="input-field col s3">
-                      <input id="course" name="course" type="text" class="validate">
-                      <label for="course">Course</label>
-                    </div>
-                    <div class="input-field col s2">
-                      <input id="year" name="year-level" type="text" class="validate">
-                      <label for="year">Year Level</label>
-                    </div>
-                    <div class="input-field col s2">
-                      <input id="municipality" name="municipality" type="text" class="validate">
-                      <label for="municipality">Municipality</label>
-                    </div>
-                    <div class="input-field col s2">
-                      <input id="status" name="status" type="text" class="validate">
-                      <label for="status">Status</label>
-                    </div>
-                  </div>
-                   <div class="modal-content">
-                    <BUTTON class="waves-effect waves-light btn teal" type="submit" name="save"><input type="submit" name="save" value="Save Data"></BUTTON>
-                   </div>
-                </form>
-                </div>
-              </div>
-            </div>
-          </div>
         <!--    END OF MODAL STRACTURE -->
 
         <!-- Data list -->
@@ -216,44 +143,22 @@ if ($provider_name_result->num_rows>0) {
                 Result :
                 <?php   echo "$row_cnt";?>
             </div>
+        <div class="row">
+          <table class ='striped' border="1">
+           <thead>
+             <tr>
+               <th class='teal-text text-lighten-2'>Student Name</th>
+               <th class='teal-text text-lighten-2'>Student Number</th>
+               <th class='teal-text text-lighten-2'>Scholarship Status</th>
+               <th class='teal-text text-lighten-2'>Requirements Status</th>
+               <th class='teal-text text-lighten-2'>Municipality</th>
+               <th class='teal-text text-lighten-2'>School</th>
+               <th class='teal-text text-lighten-2'>Course</th>
+               <th class='teal-text text-lighten-2'>Year Level</th>
+             </tr>
+           </thead>
 
-
-          <ul class="collapsible">
-            <li>
-              <div class='collapsible-header'>
-                <div class='col s2 blue-text text-darken-2  '>Student Name</h6>
-                </div>
-                <div class='col s1 teal-text '>
-                  Student Number
-                </div>
-
-                <div class='col s1 teal-text'>
-                    Scholarship Status
-                </div>
-                <div class='col s1 teal-text'>
-                  Requirements Status
-                </div>
-                <div class='col s1'>
-                  Municipality
-                </div>
-                <div class='col s2'>
-                  School
-                </div>
-                <div class='col s2'>
-                  Course
-                </div>
-                <div class='col s1'>
-                  Year Level
-                </div>
-                <div class='col s1'>
-
-                </div>
-
-
-
-              </div>
-
-            </li>
+           <tbody>
 
               <?php
               if ($result->num_rows > 0) {
@@ -261,43 +166,27 @@ if ($provider_name_result->num_rows>0) {
 
                   while($row = $result->fetch_assoc()) {
 
-                    echo "
-                    <li>
-                      <div class='collapsible-header'>
-                        <div class='col s2 blue-text text-darken-2 '>".$row['last_name']." ".$row['first_name']. ", ".$row['middle_name']. "</h6>
-                        </div>
-                        <div class='col s1'>
+                echo "
+                   <tr>
+                <td>".$row['last_name']." ".$row['first_name']. ", ".$row['middle_name']."</td>
+                <td>" .$row['student_number']."</td>
+                <td>" .$row['status']."</td>
+                <td>" .$row['requirements_status']."</td>
+                <td>" .$row['municipality']."</td>
+                <td>" .$row['school']."</td>
+                <td>" .$row['course']."</td>
+                <td>" .$row['year_level']."</td>
+                </tr>";
+              }
 
-                           ".$row['student_number']."
-                        </div>
-                        <div class='col s1'>
-                           ".$row['status']."
-                        </div>
-                        <div class='col s1'>
-                           ".$row['requirements_status']."
-                        </div>
-                        <div class='col s1'>
-                           ".$row['municipality']."
-                        </div>
-                        <div class='col s2'>
-                           ".$row['school']."
-                        </div>
-                        <div class='col s2'>
-                           ".$row['course']."
-                        </div>
-                        <div class='col s1'>
-                           ".$row['year_level']."
-                        </div>
-                        <div class='col s1'>
-                        </div>
-                      </div>
-                    </li>";
-                  }
               } else {
                   echo "<script> M.toast({html: 'Zero Result', classes: 'rounded'});</script>";
 
               }
-            ?>
+              ?>
+                 </tbody>
+               </table>
+              </div>
             </ul>
           </div>
         </div>
