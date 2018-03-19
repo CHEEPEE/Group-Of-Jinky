@@ -13,7 +13,7 @@
 		      <a href="#!" class="brand-logo blue-text "><i class=" large material-icons blue-text">insert_emoticon</i>Sub-dmin Panel</a>
 		      <ul class="right hide-on-med-and-down">
 
-		        <li><a href="chats.php?id=" class="blue-text"><i class="material-icons blue-text comments icon left"></i>Chat</a></li>
+		        <li><a href="sub-chats.php?id=" class="blue-text"><i class="material-icons blue-text comments icon left"></i>Chat</a></li>
 		      	<li><a class="dropdown-trigger blue-text" href="#!" data-target="dropdown1"><?php echo $_SESSION['login_user'];?><i class="material-icons  user circle outline icon blue-text left"></i></a></li>
 		      </ul>
 		    </div>

@@ -144,7 +144,7 @@ if ($provider_name_result->num_rows>0) {
                 <?php   echo "$row_cnt";?>
             </div>
         <div class="row">
-          <table class ='striped' border="1">
+          <table class ='striped'>
            <thead>
              <tr>
                <th class='teal-text text-lighten-2'>Student Name</th>

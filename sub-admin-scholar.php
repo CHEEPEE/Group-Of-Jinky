@@ -207,7 +207,7 @@ if ($provider_name_result->num_rows>0) {
                    </select>
                    <label>School</label>
                    </div>
-                    <div class="input-field col s3">
+                    <!-- <div class="input-field col s3">
                       <input id="course" name="course" type="text" class="validate">
                       <label for="course">Course</label>
                     </div>
@@ -222,6 +222,91 @@ if ($provider_name_result->num_rows>0) {
                     <div class="input-field col s2">
                       <input id="status" name="status" type="text" class="validate">
                       <label for="status">Status</label>
+                    </div> -->
+                    <div class="input-field col s4">
+                      <!-- <input id="course" name="course" type="text" class="validate">
+                      <label for="course">Course</label> -->
+                      <select name="course">
+                        <?php
+                        $sqlgetProvider = "SELECT * FROM course;";
+                        $provider_result = $conn->query($sqlgetProvider);
+                          if ($provider_result->num_rows>0) {
+                            # code...
+                          echo "<option id='defaultprovider' value='' selected></option>";
+                            while ($row = $provider_result->fetch_assoc()) {
+                              # code...
+                               $value = $row['course'];
+                               $id_value = $row['id'];
+                               echo "<option id='defaultprovider' value='$value'>$value</option>";
+
+                            }
+                          }
+                        ?>
+                   </select>
+                    </div>
+                    <div class="input-field col s4">
+                      <!-- <input id="year" name="year-level" type="text" class="validate">
+                      <label for="year">Year Level</label> -->
+                      <select name="year-level">
+                        <?php
+                        $sqlgetProvider = "SELECT * FROM year_level;";
+                        $provider_result = $conn->query($sqlgetProvider);
+                          if ($provider_result->num_rows>0) {
+                            # code...
+                          echo "<option id='defaultprovider' value='' selected></option>";
+                            while ($row = $provider_result->fetch_assoc()) {
+                              # code...
+                               $value = $row['year'];
+                               $id_value = $row['id'];
+                               echo "<option id='defaultprovider' value='$value'>$value</option>";
+
+                            }
+                          }
+                        ?>
+                   </select>
+                    </div>
+                    <div class="input-field col s4">
+                      <!-- <input id="municipality" name="municipality" type="text" class="validate">
+                      <label for="municipality">Municipality</label> -->
+
+                      <select name="municipality">
+                        <?php
+                        $sqlgetProvider = "SELECT * FROM municipality;";
+                        $provider_result = $conn->query($sqlgetProvider);
+                          if ($provider_result->num_rows>0) {
+                            # code...
+                          echo "<option id='defaultprovider' value='' selected></option>";
+                            while ($row = $provider_result->fetch_assoc()) {
+                              # code...
+                               $value = $row['municipality'];
+                               $id_value = $row['id'];
+                               echo "<option id='defaultprovider' value='$value'>$value</option>";
+
+                            }
+                          }
+                        ?>
+                   </select>
+                    </div>
+                    <div class="input-field col s2">
+                      <!-- <input id="status" name="status" type="text" class="validate">
+                      <label for="status">Status</label> -->
+                      <select name="status">
+                        <?php
+                        $sqlgetProvider = "SELECT * FROM status";
+                        $provider_result = $conn->query($sqlgetProvider);
+                          if ($provider_result->num_rows>0) {
+                            # code...
+                          echo "<option id='defaultprovider' value='' selected></option>";
+                            while ($row = $provider_result->fetch_assoc()) {
+                              # code...
+                               $value = $row['status'];
+                               $id_value = $row['id'];
+                               echo "<option id='defaultprovider' value='$value'>$value</option>";
+
+                            }
+                          }
+                        ?>
+                   </select>
                     </div>
                   </div>
                    <div class="modal-content">
