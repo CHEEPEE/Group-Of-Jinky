@@ -7,7 +7,13 @@
     include 'dbconnect.php';
 
     ?>
+
     <title></title>
+    <style media="screen">
+    .thebackground{
+      background-color: #deebf7;
+    }
+    </style>
   </head>
   <body class="body-custom">
     <div class="navbar-fixed  ">
@@ -25,11 +31,15 @@
   		    </div>
   		  </nav>
   	</div>
-    <div class="row grey lighten-4">
-      <div class="class col s9">
+    <div class="row">
+
+      <div class="col s2">
+
+      </div>
+      <div class="col s8">
+        <ul class='collapsible popout' data-collapsible='accordion'>
           <?php
           $sql = "SELECT * FROM announcements ORDER BY id DESC";
-
 
           $update = "";
           $result = $conn->query($sql);
@@ -46,32 +56,63 @@
                 $time =$row['hour'];
 
               echo "
-              <div class = 'newsfeedcard white'>
-              <h3 >$title</h3>
-              <div class = 'row'>
-                <div class='col s6 grey-text'>
-                  To : $subject
-                </div>
-                <div class = 'col s6 right'>
-                   <div class='chip white-text blue lighten-2'>
-                    $time  $timestamp
+
+              <li>
+                  <div class='collapsible-header'>
+                  <div class='col s4 blue-text text-darken-2'>$title
                   </div>
-                </div>
-              </div>
-              <div class='row'>
-                <div class='col s12'>
-                  <div id = 'news$id' class = 'section scrollspy'>$message</div>
-                </div>
-              </div>
+                  <div class='col s2 blue-text text-darken-2'>
+                    <div class='chip white-text blue darken-2'>
+                      $time
+                    </div>
+                  </div>
+                  <div class='col s4 blue-text text-darken-2'> <i class='material-icons blue-text calendar Outline icon'>
+                    </i>$timestamp
+                  </div>
+                  <div class='col s1 blue-text text-lighten-2'>
 
+                  </div>
+                  <div class='col s1 blue-text text-lighten-2'>
 
-              </div>
+                  </div>
+
+                  </div>
+                  <div class='collapsible-body'>
+                    <span>
+                    <div class='col s12'>
+                       <div class='chip white-text blue lighten-2'>
+                       Subject
+                       </div>
+                       $subject
+                    </div>
+                    <div class='col s12'>
+                     <div class='white-text'>
+                     This is Just a Divier
+                     </div>
+                    </div>
+                    <div class='chip white-text blue lighten-2 announcementchipcustom'>
+                      Announcement
+                    </div>
+                    <br>
+                    <br>
+                    <div class = 'container'>
+                        $message
+                    </div>
+
+                    </span>
+                  </div>
+              </li>
               ";
               }
             }
           ?>
+        </ul>
       </div>
-      <div class="col s3">
+      <div class="col s2">
+
+      </div>
+
+      <!-- <div class="col s3">
           <div class="fix-custom">
             <div class="white newsfeedcard scrollers">
               <ul class="section table-of-contents">
@@ -87,7 +128,6 @@
                   $message = $row['message'];
                     $id = $row['id'];
                 echo "
-
                 <li><a href = '#news$id'>$title</a></li>
 
 
@@ -98,7 +138,7 @@
           </ul>
           </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
 

@@ -23,6 +23,7 @@
   $_SESSION['update_studentn_number'] = $student_number;
   $provider_session = $_SESSION['provider'];
 	$req_stat = "";
+	$phone_number ="";
 	$sysid = $_REQUEST['sys'];
 
 
@@ -45,6 +46,8 @@
 	       $scolar_provider = $row['scholar_provider'];
 				 $status = $row['status'];
 				 $req_stat = $row['requirements_status'];
+				 $phone_number = $row['phone_number'];
+
 	    }
 	}
 	$school =htmlspecialchars($schoolraw, ENT_QUOTES);
@@ -147,10 +150,35 @@
 						          <input id="municipality" name="municipality" type="text" class="validate" value="<?php echo $municipality;?>">
 						          <label for="municipality">Municipality</label>
 						        </div>
-						        <div class="input-field col s2">
+						        <!-- <div class="input-field col s2">
 						          <input id="status" name="status" type="text" class="validate" value="<?php echo $status;?>">
 						          <label for="status">Status</label>
-						        </div>
+						        </div> -->
+										<div class="input-field col s2">
+											<select name="status">
+												<?php
+												$sqlgetProvider = "SELECT * FROM student_stat;";
+												$provider_result = $conn->query($sqlgetProvider);
+													if ($provider_result->num_rows>0) {
+														# code...
+														while ($row = $provider_result->fetch_assoc()) {
+															# code...
+															$stats = $row['user_stats'];
+														 if ($row['status'] == $status) {
+															 # code...
+															 echo "<option id='defaultprovider' value='$stats' selected>$stats</option>";
+														 }else {
+															 # code...
+															 echo "<option id='defaultprovider' value='$stats'>$stats</option>";
+														 }
+														}
+													}
+												?>
+
+
+									 </select>
+									 <label>Status</label>
+								 </div>
 						         <div class="input-field col s2">
 						           <select name="provider">
 												 <?php
@@ -183,9 +211,14 @@
 								     	<option id="requirements_status_2" value=""></option>
 
 								    </select>
-								    <label>Scholarship Provider</label>
-						        </div>
+								    <label>Scholarship Statu</label>
+								 	</div>
+									<div class="input-field col s5">
+										<input id="phone_number" name="phone_number" type="text" class="validate" value="<?php echo $phone_number;?>">
+										<label for="phone_number">Phone Number</label>
+									</div>
 						      </div>
+
 						       <div class="modal-content">
 						        <BUTTON class="waves-effect waves-light btn blue lighten-2" type="submit" name="save"><input type="submit" name="save" value="Save Changes"></BUTTON>
 
@@ -218,13 +251,13 @@
 			function selectOptions(){
 				var getprovider = document.getElementById("defaultprovider").innerHTML;
 				var getprovider1 = document.getElementById("requirements_status_1").innerHTML;
-				if (getprovider1 == "Complete") {
-					document.getElementById("requirements_status_2").innerHTML = "Incomplete";
-					document.getElementById("requirements_status_2").value = "Incomplete";
+				if (getprovider1 == "Releasing") {
+					document.getElementById("requirements_status_2").innerHTML = "Onhold";
+					document.getElementById("requirements_status_2").value = "Onhold";
 
 				}else{
-					document.getElementById("requirements_status_2").innerHTML = "Complete";
-					document.getElementById("requirements_status_2").value = "Complete";
+					document.getElementById("requirements_status_2").innerHTML = "Releasing";
+					document.getElementById("requirements_status_2").value = "Releasing";
 				}
 			}
 			selectOptions();

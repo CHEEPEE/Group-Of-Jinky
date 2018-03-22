@@ -23,6 +23,7 @@ if ($_REQUEST['id']=='') {
   <?php include 'navbar.php';?>
   </div>
    <div class="row fullheight main-content">
+
     <?php include 'chat-side-nav.php';?>
     <div class="col s11 fullheight">
       <!-- chat list -->
@@ -53,9 +54,6 @@ if ($_REQUEST['id']=='') {
     $(document).ready(function(){
       $(document).scrollTop($(document).height());
    });
-
-
-
      function fetch_data()
         {
           $.ajax({
@@ -73,7 +71,6 @@ if ($_REQUEST['id']=='') {
                      });
                    result = result + ""
                    $("#chat-list").html(result);
-
              }
            });
         }
@@ -83,8 +80,6 @@ if ($_REQUEST['id']=='') {
          fetch_data();
        }, 1000);
        });
-
-
 
       $(document).on('click', '#send-btn', function(){
       var getInputMessage = document.getElementById('input-message');
@@ -114,14 +109,8 @@ if ($_REQUEST['id']=='') {
      {
       alert("Both Fields is required");
      }
+
     });
-
-
-
-
-
-
-
 
   </script>
  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

@@ -84,7 +84,7 @@
       # code...
       while ($row = $result->fetch_assoc()) {
         # code...
-        return $row['first_name']." ".$row['last_name'];
+        return $row['first_name']." ".$row['middle_name']." ".$row['last_name'];
       }
     }
   }
@@ -104,6 +104,15 @@
       }
     }
   }
+
+  function timeKey()
+  {
+    date_default_timezone_set("Asia/Manila");
+    // mdHis
+
+    return $timestamp;
+  }
+
 
 
  ?>

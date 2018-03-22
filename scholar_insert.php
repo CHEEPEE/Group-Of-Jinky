@@ -12,9 +12,11 @@ $school = htmlspecialchars($schoolraw, ENT_QUOTES);
 $course = $_POST['course'];
 $yearlevel = $_POST['year-level'];
 $municipality = $_POST['municipality'];
-$status = $_POST['status'];
+$status = "New";
 $provider = $_SESSION['provider'];
 $schoolyearsem = $_REQUEST['sysid'];
+$requirements_status = $_POST['requirements_status'];
+
 
 echo $studentNumber;
 echo $firstname;
@@ -43,7 +45,7 @@ if ($result->num_rows>0) {
         else
       	{
       		$sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem)
-			    VALUES ('$studentNumber','$firstname','$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete',$schoolyearsem)";
+			    VALUES ('$studentNumber','$firstname','$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','$requirements_status',$schoolyearsem)";
 
     			if ($conn->query($sql) === TRUE) {
     			     $_SESSION['error'] = '';
@@ -64,7 +66,7 @@ elseif ($result->num_rows==0) {
   }else {
     # code...
     $sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem )
-    VALUES ('$studentNumber', '$firstname', '$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete','$schoolyearsem')";
+    VALUES ('$studentNumber', '$firstname', '$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','$requirements_status','$schoolyearsem')";
 
     if ($conn->query($sql) === TRUE) {
          $_SESSION['error'] = '';

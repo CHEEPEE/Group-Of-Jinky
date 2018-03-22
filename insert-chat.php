@@ -15,6 +15,17 @@ if(isset($_POST["message"]))
 }else {
 echo "Error: " .$connect->error;
 }
+
+
+date_default_timezone_set("America/New_York");
+$chatId = date('Ymdhis');
+$insertIntoUsers = "UPDATE users set chat_time_stamp = $chatId Where id =$student_id";
+if (mysqli_query($connect,$insertIntoUsers)) {
+  # code...
+
+  }else {
+    # code...
+  }
 }
 
 ?>

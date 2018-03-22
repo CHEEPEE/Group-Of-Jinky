@@ -224,9 +224,9 @@ if ($provider_name_result->num_rows>0) {
                       <label for="status">Status</label>
                     </div> -->
                     <div class="input-field col s4">
-                      <!-- <input id="course" name="course" type="text" class="validate">
-                      <label for="course">Course</label> -->
-                      <select name="course">
+                      <input id="course" name="course" type="text" class="validate">
+                      <label for="course">Course</label>
+                      <!-- <select name="course">
                         <?php
                         $sqlgetProvider = "SELECT * FROM course;";
                         $provider_result = $conn->query($sqlgetProvider);
@@ -242,7 +242,7 @@ if ($provider_name_result->num_rows>0) {
                             }
                           }
                         ?>
-                   </select>
+                   </select> -->
                     </div>
                     <div class="input-field col s4">
                       <!-- <input id="year" name="year-level" type="text" class="validate">
@@ -286,11 +286,12 @@ if ($provider_name_result->num_rows>0) {
                           }
                         ?>
                    </select>
+                     <label for="municipality">Municipality</label>
                     </div>
                     <div class="input-field col s2">
                       <!-- <input id="status" name="status" type="text" class="validate">
                       <label for="status">Status</label> -->
-                      <select name="status">
+                      <select name="requirements_status">
                         <?php
                         $sqlgetProvider = "SELECT * FROM status";
                         $provider_result = $conn->query($sqlgetProvider);
@@ -302,12 +303,16 @@ if ($provider_name_result->num_rows>0) {
                                $value = $row['status'];
                                $id_value = $row['id'];
                                echo "<option id='defaultprovider' value='$value'>$value</option>";
-
                             }
                           }
                         ?>
                    </select>
+                   <label for="status">Requirements Status</label>
                     </div>
+                    <div class="input-field col s5">
+                     <input id="phone_number" name="phone_number" type="text" type="tel" class="validate">
+                     <label for="phone_number">Phone Number</label>
+                   </div>
                   </div>
                    <div class="modal-content">
                     <BUTTON class="waves-effect waves-light btn teal" type="submit" name="save"><input type="submit" name="save" value="Save Data"></BUTTON>
@@ -412,6 +417,8 @@ if ($provider_name_result->num_rows>0) {
                               <th class='teal-text text-lighten-2'>School</th>
                               <th class='teal-text text-lighten-2'>Course</th>
                               <th class='teal-text text-lighten-2'>Year Level</th>
+                              <th class='teal-text text-lighten-2'>Phone Number</th>
+
                           </tr>
                         </thead>
 
@@ -421,6 +428,8 @@ if ($provider_name_result->num_rows>0) {
                             <td>".$row['school']."</td>
                             <td>".$row['course']."</td>
                             <td>".$row['year_level']."</td>
+                            <td>".$row['phone_number']."</td>
+
                           </tr>
                         </tbody>
                       </table>

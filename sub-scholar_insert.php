@@ -15,6 +15,7 @@ $municipality = $_POST['municipality'];
 $status = $_POST['status'];
 $provider = $_SESSION['provider'];
 $schoolyearsem = $_REQUEST['sysid'];
+$phone_number = $_POST['phone_number'];
 
 echo $studentNumber;
 echo $firstname;
@@ -25,6 +26,7 @@ echo $course;
 echo $yearlevel;
 echo $municipality;
 echo $status;
+
 
 $searchql = "SELECT student_number,scholar_provider FROM student_list_scholars WHERE student_number LIKE '$studentNumber' AND scholar_provider = '$provider' AND school_year_sem = '$schoolyearsem'";
 $result = $conn->query($searchql);
@@ -41,8 +43,8 @@ if ($result->num_rows> 0) {
       	}
         else
       	{
-      		$sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem)
-			VALUES ('$studentNumber','$firstname','$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete',$schoolyearsem)";
+      		$sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem,phone_number)
+			VALUES ('$studentNumber','$firstname','$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete',$schoolyearsem,'$phone_number')";
 
 
       $user =   $_SESSION['login_user'];
@@ -69,8 +71,8 @@ if ($result->num_rows> 0) {
 
 }elseif ($result->num_rows ==0) {
 	# code...
-	   $sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem )
-	VALUES ('$studentNumber', '$firstname', '$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete','$schoolyearsem')";
+	   $sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem,phone_number )
+	VALUES ('$studentNumber', '$firstname', '$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','incomplete','$schoolyearsem','$phone_number')";
 
 	if ($conn->query($sql) === TRUE) {
 	     $_SESSION['error'] = '';

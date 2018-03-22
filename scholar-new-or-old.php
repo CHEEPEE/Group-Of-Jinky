@@ -1,6 +1,7 @@
 <?php
 include 'dbconnect.php';
 $student_number = $_POST['student-number'];
+$school = $_POST['school'];
 $sql = "SELECT * from student_list_scholars WHERE student_number = '$student_number'";
 $result = $conn->query($sql);
 if ($result->num_rows >0) {

@@ -151,9 +151,11 @@
                     <input id="student-number" name="student-number" type="text" class="validate">
                     <label for="student-number">Student Number</label>
                   </div>
+              
                  <div class="modal-content">
                   <BUTTON class="waves-effect waves-light btn blue lighten-2" type="submit" name="save"><input type="submit" name="save" value="Proceed"></BUTTON>
                  </div>
+
                 </div>
               </form>
             </div>

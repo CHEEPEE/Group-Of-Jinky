@@ -48,11 +48,35 @@ $student_number = $_REQUEST['q'];
 
                                   <h5 class="grey-text">User Create Account</h5>
                            </div>
+
                        <div class="input-field col s12">
                         <i class="blue-text text-lighten-2 material-icons prefix user outline icon"></i>
                          <input id="username" name="username" class="blue-text text-lighten-2" type="text" class="validate" disabled value="<?php echo $student_number;?>">
                          <label for="username">Username</label>
                        </div>
+                       <div class="input-field col s12">
+                         <select name="school">
+                           <?php
+                           include 'dbconnect.php';
+                           $sqlgetProvider = "SELECT * FROM school_list;";
+                           $provider_result = $conn->query($sqlgetProvider);
+                             if ($provider_result->num_rows>0) {
+                               # code...
+                             echo "<option id='defaultprovider' value='' selected></option>";
+                               while ($row = $provider_result->fetch_assoc()) {
+                                 # code...
+                                  $value = $row['school_list'];
+                                  $id_value = $row['id'];
+                                  echo "<option id='defaultprovider' value='$value'>$value</option>";
+
+                               }
+                             }
+                           ?>
+                      </select>
+                      <label>School</label>
+                      </div>
+
+                     </div>
 
                        <div class="input-field col s12">
                            <i class="blue-text text-lighten-2 material-icons prefix privacy icon"></i>

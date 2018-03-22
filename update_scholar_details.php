@@ -16,6 +16,7 @@ $sysid = $_REQUEST['sys'];
 $requirements_status = $_POST['requirements_status'];
 $id =  $_SESSION['update_studentn_number'];
 $provider = $_POST['provider'];
+$phone_number = $_POST['phone_number'];
 
 $provider_session = $_SESSION['provider'];
 
@@ -31,7 +32,7 @@ $provider_session = $_SESSION['provider'];
 echo $provider;
 
 
- $sql = "UPDATE student_list_scholars SET student_number = '$id',first_name='$firstname',last_name='$lastname',middle_name = '$middlename',school='$school',course='$course',year_level='$yearlevel',municipality = '$municipality',status = '$status', scholar_provider = '$provider',requirements_status = '$requirements_status' WHERE student_number = '$id' AND scholar_provider = '$provider_session'";
+ $sql = "UPDATE student_list_scholars SET student_number = '$id',first_name='$firstname',last_name='$lastname',middle_name = '$middlename',school='$school',course='$course',year_level='$yearlevel',municipality = '$municipality',status = '$status', scholar_provider = '$provider',requirements_status = '$requirements_status', phone_number = '$phone_number' WHERE student_number = '$id' AND scholar_provider = '$provider_session'";
 if ($conn->query($sql) === TRUE) {
  $_SESSION['update_studentn_number'] = "";
  $_SESSION['error'] = 'Updated successfully';

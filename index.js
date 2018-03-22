@@ -1,9 +1,17 @@
 
 
-$('.carousel.carousel-slider').carousel({
-   fullWidth: true,
-   indicators: true
+
+ $('.carousel').carousel({
+     padding: 50
  });
+ autoplay()
+ function autoplay() {
+     $('.carousel').carousel('next');
+     setTimeout(autoplay, 5000);
+ }
+ $('.carousel.carousel-slider').carousel({
+    fullWidth: true
+  });
   $(document).ready(function(){
     $('.tabs').tabs();
   });
