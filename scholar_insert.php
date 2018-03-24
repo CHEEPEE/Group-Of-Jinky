@@ -16,6 +16,7 @@ $status = "New";
 $provider = $_SESSION['provider'];
 $schoolyearsem = $_REQUEST['sysid'];
 $requirements_status = $_POST['requirements_status'];
+$phone_number = $_POST['phone_number'];
 
 
 echo $studentNumber;
@@ -44,8 +45,8 @@ if ($result->num_rows>0) {
       	}
         else
       	{
-      		$sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem)
-			    VALUES ('$studentNumber','$firstname','$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','$requirements_status',$schoolyearsem)";
+      		$sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem,phone_number)
+			    VALUES ('$studentNumber','$firstname','$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','$requirements_status',$schoolyearsem,'$phone_number')";
 
     			if ($conn->query($sql) === TRUE) {
     			     $_SESSION['error'] = '';
@@ -65,8 +66,8 @@ elseif ($result->num_rows==0) {
     $_SESSION['error'] = 'Student Already been Inserted';
   }else {
     # code...
-    $sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem )
-    VALUES ('$studentNumber', '$firstname', '$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','$requirements_status','$schoolyearsem')";
+    $sql = "INSERT INTO student_list_scholars (student_number, first_name, last_name,middle_name,school,course,year_level,municipality,status,scholar_provider,requirements_status,school_year_sem,phone_number)
+    VALUES ('$studentNumber', '$firstname', '$lastname','$middlename','$school','$course','$yearlevel','$municipality','$status','$provider','$requirements_status','$schoolyearsem','$phone_number')";
 
     if ($conn->query($sql) === TRUE) {
          $_SESSION['error'] = '';

@@ -29,13 +29,27 @@ if ($_REQUEST['id']=='') {
       <!-- chat list -->
       <div class="row">
         <div class="">
+          <div class="col s12 white blue-text" style="position: fixed;">
+            <br>
+            <div class="chip white-text blue ">
+            <?php
+              $student_id = $_REQUEST['id'];
+              echo "To: ". getUserName(getStudentNumber($student_id));
+            ?>
+            </div>
+
+          </div>
+          <br>
+          <br><br>
           <div class="chat-list" id="chat-list">
           </div>
         </div>
       </div>
     </div>
+
     <div class="input-message-bar white">
       <!-- <form class="" action="insert-chat.php" method="post"> -->
+
         <div class="col s6">
           <input type="text" id="input-message" name="input-message" placeholder="Chat Text Here">
         </div>

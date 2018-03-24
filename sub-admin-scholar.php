@@ -184,25 +184,25 @@ if ($provider_name_result->num_rows>0) {
                    <form class="col s12" method="post" action="sub-scholar_insert.php?sysid=<?php echo $sys;?>">
                   <div class="row">
                     <div class="input-field col s2">
-                      <input id="student-number" name="student-number" type="text" class="validate">
+                      <input id="student-number" name="student-number" type="text" class="validate" required>
                       <label for="student-number">Student Number</label>
                     </div>
                      <div class="input-field col s4">
-                      <input id="firstname" name="firstname" type="text" class="validate">
+                      <input id="firstname" name="firstname" type="text" class="validate" required>
                       <label for="firstname">First Name</label>
                     </div>
                     <div class="input-field col s4">
-                      <input id="last_name" name="last_name" type="text" class="validate">
+                      <input id="last_name" name="last_name" type="text" class="validate" required>
                       <label for="last_name">Last Name</label>
                     </div>
                      <div class="input-field col s2">
-                      <input id="middle_name" name="middlename" type="text" class="validate">
+                      <input id="middle_name" name="middlename" type="text" class="validate" required>
                       <label for="middle_name">Middle Name</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s4">
-                      <select name="school">
+                      <select name="school" required>
                       <option id='defaultprovider' value='<?php echo $schoolname;?>' selected><?php echo $schoolname;?></option>
                    </select>
                    <label>School</label>
@@ -224,7 +224,7 @@ if ($provider_name_result->num_rows>0) {
                       <label for="status">Status</label>
                     </div> -->
                     <div class="input-field col s4">
-                      <input id="course" name="course" type="text" class="validate">
+                      <input id="course" name="course" type="text" class="validate" required>
                       <label for="course">Course</label>
                       <!-- <select name="course">
                         <?php
@@ -247,7 +247,7 @@ if ($provider_name_result->num_rows>0) {
                     <div class="input-field col s4">
                       <!-- <input id="year" name="year-level" type="text" class="validate">
                       <label for="year">Year Level</label> -->
-                      <select name="year-level">
+                      <select name="year-level" required>
                         <?php
                         $sqlgetProvider = "SELECT * FROM year_level;";
                         $provider_result = $conn->query($sqlgetProvider);
@@ -269,7 +269,7 @@ if ($provider_name_result->num_rows>0) {
                       <!-- <input id="municipality" name="municipality" type="text" class="validate">
                       <label for="municipality">Municipality</label> -->
 
-                      <select name="municipality">
+                      <select name="municipality" required>
                         <?php
                         $sqlgetProvider = "SELECT * FROM municipality;";
                         $provider_result = $conn->query($sqlgetProvider);
@@ -291,7 +291,7 @@ if ($provider_name_result->num_rows>0) {
                     <div class="input-field col s2">
                       <!-- <input id="status" name="status" type="text" class="validate">
                       <label for="status">Status</label> -->
-                      <select name="requirements_status">
+                      <select name="requirements_status" required>
                         <?php
                         $sqlgetProvider = "SELECT * FROM status";
                         $provider_result = $conn->query($sqlgetProvider);
@@ -310,7 +310,7 @@ if ($provider_name_result->num_rows>0) {
                    <label for="status">Requirements Status</label>
                     </div>
                     <div class="input-field col s5">
-                     <input id="phone_number" name="phone_number" type="text" type="tel" class="validate">
+                     <input id="phone_number" name="phone_number" type="text" type="tel" class="validate" required>
                      <label for="phone_number">Phone Number</label>
                    </div>
                   </div>

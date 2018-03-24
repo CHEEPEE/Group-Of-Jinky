@@ -113,6 +113,22 @@
     return $timestamp;
   }
 
+  function getStudentNumber($studentNumber)
+  {
+    # code...
+    include 'dbconnect.php';
+
+    $sql = "SELECT * FROM users WHERE id = '$studentNumber' LIMIT 1;";
+    $result = $conn->query($sql);
+    if ($result->num_rows>0) {
+      # code...
+      while ($row = $result->fetch_assoc()) {
+        # code...
+        return $row['user_id'];
+      }
+    }
+  }
+
 
 
  ?>
