@@ -16,7 +16,7 @@ $provider_result = $conn->query($sql);
                   # code...
                   while ($row = $provider_result->fetch_assoc()) {
                     # code...
-                    echo "  <li class='' ><a href='admin-scholar.php?q=".$row['provider_id']."&sys=".$session_sys."' class='white-text' >".$row['provider_name']."</a></li>
+                    echo "  <li class='' ><a href='sub-admin-scholar.php?q=".$row['provider_id']."&sys=".$session_sys."' class='white-text' >".$row['provider_name']."</a></li>
                       ";
                   }
                 }
@@ -37,7 +37,7 @@ $provider_result = $conn->query($sql);
             $student_id = $reg_rows['username'];
             $usr_id =  $reg_rows['id'];
             # code...
-            echo "<li><a href = 'chats.php?id=$usr_id' class='collapsible-header white-text'>".getUserName($student_id)."<i class='material-icons white-text'></i></a> </li>";
+            echo "<li><a href = 'sub-chats.php?id=$usr_id' class='collapsible-header white-text'>".getUserName($student_id)."<i class='material-icons white-text'></i></a> </li>";
           }
         }
         ?>

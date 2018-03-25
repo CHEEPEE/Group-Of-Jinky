@@ -401,9 +401,16 @@ if ($provider_name_result->num_rows>0) {
                           </a>
                         </div>
                         <div class='col s1'>
-                          <a href = 'sub-scholar_delete.php?q=".$row['student_number']."&sys=".$sys."'>
-                            <i class='material-icons small red-text text-lighten-2'>delete_forever</i>
-                          </a>
+                        <a class='waves-effect waves-light modal-trigger' href='#delete-student'><i class='material-icons small red-text text-lighten-2'>delete_forever</i></a>
+                        <div id='delete-student' class='modal'>
+                         <div class='modal-content'>
+                           <h5>Do you really want to delete this data?</h5>
+                           <p></p>
+                         </div>
+                         <div class='modal-footer'>
+                           <a href='sub-scholar_delete.php?q=".$row['student_number']."&sys=".$sys."' class='modal-action modal-close waves-effect waves-green btn-flat'>Yes</a>
+                         </div>
+                       </div>
                         </div>
                         <div class='col s1'>
                           <i class='material-icons small blue-text comments outline'>chat</i>
