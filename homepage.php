@@ -206,7 +206,7 @@
                 </div>
               </div>
             </div>
-            <div class="col s5 grey-text">
+            <!-- <div class="col s5 grey-text">
               <div class="card">
                 <div class="container">
                   <div class="form">
@@ -233,7 +233,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
           </div>
         </p>

@@ -384,8 +384,8 @@ if ($provider_name_result->num_rows>0) {
                         </div>
                         <div class='col s1'>
 
-                           <a class='waves-effect waves-light modal-trigger' href='#delete-student'><i class='material-icons small red-text text-lighten-2'>delete_forever</i></a>
-                           <div id='delete-student' class='modal'>
+                           <a class='waves-effect waves-light modal-trigger' href='#delete-student".$row['student_number']."'><i class='material-icons small red-text text-lighten-2'>delete_forever</i></a>
+                           <div id='delete-student".$row['student_number']."' class='modal'>
                             <div class='modal-content'>
                               <h5>Do you really want to delete this data?</h5>
                               <p></p>
