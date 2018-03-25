@@ -15,6 +15,7 @@
   $provider = $_REQUEST["q"];
   $schoolyearSemId = '';
   $sys =  $_REQUEST['sys'];
+  $_SESSION['sys'] = $sys;
   $schoolid = $_SESSION['schoolhandle'];
   $selectSchool = "SELECT * FROM school_list WHERE id =$schoolid";
   $schoolname;
@@ -149,7 +150,7 @@ if ($provider_name_result->num_rows>0) {
 
               <div class="col s1 right">
                    <div class='chip teal white-text teal lighten-2'>
-                         Print
+                        <a class="white-text" href="sub-print.php?sys=<?php echo $sys; ?>" > Print</a>
                     </div>
               </div>
 

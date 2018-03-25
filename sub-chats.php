@@ -20,7 +20,7 @@ if ($_REQUEST['id']=='') {
   ?>
 </head>
 <body>
-  <?php include 'navbar.php';?>
+  <?php include 'sub-navbar.php';?>
   </div>
    <div class="row fullheight main-content">
     <?php include 'sub-chat-side-nav.php';?>
